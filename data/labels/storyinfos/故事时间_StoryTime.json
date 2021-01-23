@@ -1,0 +1,34 @@
+{
+  "年代": {
+      "var_name": "ND",
+      "description": "70-90年代"
+  },
+  "未来": {
+      "var_name": "WL",
+      "description": "我们现处时代以后的时间"
+  },
+  "民国": {
+      "var_name": "MG",
+      "description": "中华民国时期（从清朝末期之后到抗日之前）"
+  },
+  "当代": {
+      "var_name": "DD",
+      "description": "我们现处的时代"
+  },
+  "远古": {
+      "var_name": "YG",
+      "description": "秦朝以前的时代"
+  },
+  "古代": {
+      "var_name": "GD",
+      "description": "相当于中国秦朝到清朝末期"
+  },
+  "近代": {
+      "var_name": "JD",
+      "description": "1937年（抗日）-70年代前（改革开放）"
+  },
+  "虚拟时代": {
+      "var_name": "XN",
+      "description": "作品画面呈现建筑、多数角色服饰、发饰等明显不是同一时代，同时存在多个时代的特征。"
+  }
+}

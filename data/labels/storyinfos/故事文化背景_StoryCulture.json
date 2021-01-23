@@ -1,0 +1,29 @@
+{
+  "中国": {
+      "var_name": "CH"
+  },
+  "印度": {
+      "var_name": "IN"
+  },
+  "埃及/巴比伦": {
+      "var_name": "EG"
+  },
+  "希腊": {
+      "var_name": "GR"
+  },
+  "西方欧洲": {
+      "var_name": "WEU"
+  },
+  "日本": {
+      "var_name": "JP"
+  },
+  "韩国": {
+      "var_name": "KR"
+  },
+  "虚拟文化背景": {
+      "var_name": "XN"
+  },
+  "其他文化背景": {
+      "var_name": "OTHER"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "亲人关系": {
+      "var_name": "QR",
+      "description": "有血缘关系（或名义上/感情上）的人",
+      "children": {
+          "父（母子）女": {
+              "var_name": "FMZN",
+              "description": "父母和子女的关系，包括血缘上的亲子关系和法律上的亲子关系"
+          },
+          "兄（弟姐）妹": {
+              "var_name": "XDJM",
+              "description": "有血缘的兄弟姐妹或家庭里领养、收养、寄养的兄弟姐妹或结义的兄弟姐妹"
+          },
+          "婆媳": {
+              "var_name": "PX",
+              "description": ""
+          },
+          "祖孙": {
+              "var_name": "ZS",
+              "description": "孙子和孙女与爷爷奶奶、外公外婆"
+          }
+      }
+  },
+  "爱恋关系": {
+      "var_name": "AL",
+      "description": "以爱情情感作为关系纽带的人",
+      "children": {
+          "恋人": {
+              "var_name": "LR",
+              "description": "确定恋爱关系的双方"
+          },
+          "夫妻": {
+              "var_name": "FQ",
+              "description": "男女合法婚姻关系"
+          },
+          "未婚夫妻": {
+              "var_name": "WHFQ",
+              "description": "有仪式已经订婚"
+          },
+          "年下恋人": {
+              "var_name": "NXLR",
+              "description": "男性比女性小；攻的年纪比受小；t比p小"
+          },
+          "青梅竹马": {
+              "var_name": "QMZM",
+              "description": "自幼亲密玩耍且陪伴长大的青年男女"
+          },
+          "情人": {
+              "var_name": "QR",
+              "description": "等同于恋人或情侣却无法予以正式名分或承诺的人（小三）"
+          },
+          "隐婚": {
+              "var_name": "YH",
+              "description": "已经履行了结婚的法定手续，却并不对外宣称自己“已婚”身份"
+          },
+          "契约婚恋": {
+              "var_name": "QYHL",
+              "description": "签订契约形成婚姻或情侣关系"
+          },
+          "初恋": {
+              "var_name": "CL",
+              "description": "第一次确定关系的恋爱对象"
+          },
+          "暧昧": {
+              "var_name": "AM",
+              "description": "男女或同性之间态度含糊、不明朗，或还未发展到确定的恋人关系，但是行为举止和恋人关系差不多或超越友情之上"
+          },
+          "暗恋": {
+              "var_name": "AL",
+              "description": "指一个角色没有对另一个角色明确说出好感、爱慕或喜欢的心意，只把这份感情放在心里"
+          },
+          "单恋": {
+              "var_name": "DL",
+              "description": "指一个角色对另一个角色的以一厢情愿的倾慕与喜爱为特点的爱情"
+          },
+          "先婚后爱": {
+              "var_name": "XHHA",
+              "description": "先结婚/订婚，后恋爱"
+          },
+          "前任": {
+              "var_name": "QIR",
+              "description": "离婚夫妻、分手恋人等"
+          }
+      }
+  },
+  "友情关系": {
+      "var_name": "YQ",
+      "description": "以友情作为关系纽带的人",
+      "children": {
+          "普通朋友": {
+              "var_name": "PTPY",
+              "description": "有共同语言而经常交流，相处起来很舒服，双方有时间就相约在一起而聚一聚"
+          },
+          "哥们": {
+              "var_name": "GM",
+              "description": "泛称男性间意气相投或志同道合的人、亦以称友情深笃的人"
+          },
+          "闺蜜": {
+              "var_name": "GUIM",
+              "description": "女性要好、亲密、无话不谈的好朋友"
+          },
+          "红颜/蓝颜知己": {
+              "var_name": "ZJ",
+              "description": "可以无话不谈的，彼此有共鸣又非常知心的异性朋友"
+          }
+      }
+  },
+  "职场/社会关系": {
+      "var_name": "SH",
+      "description": "职场或社会生活中形成的关系",
+      "children": {
+          "师徒": {
+              "var_name": "ST",
+              "description": "师傅和徒弟"
+          },
+          "师生": {
+              "var_name": "SS",
+              "description": "老师和学生"
+          },
+          "主仆": {
+              "var_name": "ZP",
+              "description": "主人和仆人"
+          },
+          "君臣": {
+              "var_name": "JC",
+              "description": "君主与臣下"
+          },
+          "雇佣": {
+              "var_name": "GY",
+              "description": "老板和员工"
+          },
+          "同事": {
+              "var_name": "TS",
+              "description": "在同一单位工作的人（权力关系平级或上下级）"
+          },
+          "同桌": {
+              "var_name": "TZ",
+              "description": "坐在一起上课的同学"
+          },
+          "同学": {
+              "var_name": "TX",
+              "description": "指在共同环境下一起学习的一群同级学生"
+          },
+          "校友": {
+              "var_name": "XY",
+              "description": "在同一个学校学习过的人"
+          },
+          "同门": {
+              "var_name": "TM",
+              "description": "师从同一个门派或派别的人"
+          },
+          "同行": {
+              "var_name": "TH",
+              "description": "在同一个行业工作"
+          }
+      }
+  },
+  "敌对关系": {
+      "var_name": "DD",
+      "description": "两人以恩怨纠葛或仇恨建立的关系纽带",
+      "children": {
+          "情敌": {
+              "var_name": "QD",
+              "description": "因同一爱慕的对象而彼此发生矛盾的人"
+          },
+          "劲敌": {
+              "var_name": "JD",
+              "description": "强劲、棘手的敌人或对手。某个时间段内需要打倒的对象"
+          },
+          "宿敌": {
+              "var_name": "SD",
+              "description": "能持续永恒的较量，长期的敌人，天生的对手，命中注定的竞争者。一向对抗的同道中人，纠缠几年、甚至一生的对手，久己存在的敌人。为与劲敌区分宿敌的能力要高于劲敌且较长时间存在于故事内容中"
+          }
+      }
+  },
+  "饲养": {
+      "var_name": "SY",
+      "description": "指对某个角色像对动物一样培养与照顾，主人与宠物的关系（泛指猫、狗、人、怪物等）",
+      "children": {}
+  },
+  "身份替身": {
+      "var_name": "TS",
+      "description": "角色A代替角色B的身份完成某件事",
+      "children": {}
+  },
+  "利用关系": {
+      "var_name": "LY",
+      "description": "角色A利用角色B达成某个目的，或AB两个角色互相利用",
+      "children": {}
+  },
+  "囚禁关系": {
+      "var_name": "QJ",
+      "description": "角色A对B形成精神或肉体上的控制",
+      "children": {}
+  }
+}

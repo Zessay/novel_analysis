@@ -1,0 +1,58 @@
+{
+  "萝莉": {
+      "var_name": "LL",
+      "description": "外表看似未成年，对比来看，身体娇小，美型可爱，圆脸圆眼，多穿蕾丝百褶裙，外表看是可爱的小女孩"
+  },
+  "正太": {
+      "var_name": "ZT",
+      "description": "外表长相看起来未成年，很萌很可爱的男孩子"
+  },
+  "丑女": {
+      "var_name": "CNV",
+      "description": "指身材或面部都有缺陷的女性"
+  },
+  "兽耳": {
+      "var_name": "SER",
+      "description": "指长着各种很萌的动物耳朵的人物"
+  },
+  "翅膀": {
+      "var_name": "CB",
+      "description": "角色外形为人形，但长翅膀"
+  },
+  "尾巴": {
+      "var_name": "WB",
+      "description": "角色外形为人形，但长尾巴"
+  },
+  "胖子": {
+      "var_name": "PZ",
+      "description": "在作品中与其他角色比，明显体型庞大，浑身肥肉"
+  },
+  "阴阳人": {
+      "var_name": "YYR",
+      "description": "具有男、女两种外形特征"
+  },
+  "动物形态": {
+      "var_name": "DW",
+      "description": "角色是动物形态、有部分动物形态或能变换动物形态"
+  },
+  "灵体": {
+      "var_name": "LT",
+      "description": "可称为精神体、能量体或光环体，是没有实体的灵系生物，可能拥有一定的智慧。如：幽灵、炎魔等"
+  },
+  "双马尾": {
+      "var_name": "SMW",
+      "description": "头部左右两边各绑上对称马尾的发型的角色"
+  },
+  "黑长直": {
+      "var_name": "HCZ",
+      "description": "黑长直是黑色的发色与直长发的发型的组合"
+  },
+  "黑皮": {
+      "var_name": "HP",
+      "description": "拥有黑色皮肤或棕色皮肤的角色"
+  },
+  "萌宠": {
+      "var_name": "MC",
+      "description": "带有“萌”性特质的宠物，不拟人"
+  }
+}

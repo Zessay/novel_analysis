@@ -1,0 +1,158 @@
+{
+  "表里不一": {
+      "var_name": "BLBY",
+      "description": "外在表现与内在想法不一样"
+  },
+  "傲娇": {
+      "var_name": "AOJ",
+      "description": "角色为了掩饰害羞腼腆而做出态度强硬高傲表里不一言行的代名词，常用来形容平常说话带刺，态度强硬高傲，但在一定的条件下害臊地黏腻在身边的角色"
+  },
+  "霸道": {
+      "var_name": "BADO",
+      "description": "强横，蛮不讲理，多用于男性角色"
+  },
+  "高冷": {
+      "var_name": "GL",
+      "description": "清高、孤傲、待人冷淡"
+  },
+  "腹黑": {
+      "var_name": "FH",
+      "description": "表面不动声色，但内心会算计别人，二次元世界里多为萌属性。中性或褒义词"
+  },
+  "阴险": {
+      "var_name": "YX",
+      "description": "表面不动声色或与人和善，但内心会算计别人，不怀好意想要害别人。贬义词"
+  },
+  "逗逼": {
+      "var_name": "DB",
+      "description": "言语、行为夸张犯傻，让人觉得有点搞笑但不反感"
+  },
+  "淡定": {
+      "var_name": "DD",
+      "description": "遇事沉着、镇定"
+  },
+  "刁蛮": {
+      "var_name": "DMA",
+      "description": "狡猾蛮横，任性不讲理，主要指女性"
+  },
+  "单纯": {
+      "var_name": "DC",
+      "description": "见识面少，或人生阅历、经历少，思想单一"
+  },
+  "纯真": {
+      "var_name": "CHZ",
+      "description": "知世故而不世故"
+  },
+  "幽默": {
+      "var_name": "YOUM",
+      "description": "主要表现为机智、反应快，有梗、自嘲，调侃、风趣等"
+  },
+  "狡猾": {
+      "var_name": "JH",
+      "description": "诡计多端不可轻信"
+  },
+  "叛逆": {
+      "var_name": "PN",
+      "description": "违背他人（比如孩子违背父母）的本意，常常做出一些出乎意料之外的事"
+  },
+  "幼稚": {
+      "var_name": "YOUZ",
+      "description": "思想不成熟，见识不够开阔，看问题难以洞悉实质，心智未开，总是喜欢主观想象"
+  },
+  "勇敢": {
+      "var_name": "YOG",
+      "description": "面对危险和困难，有胆量，不退缩，明确知道可能的风险和结果依然迎难而上"
+  },
+  "阴暗": {
+      "var_name": "YIA",
+      "description": "习惯把他人和事想象成对自己不利的方面"
+  },
+  "神经质": {
+      "var_name": "SJZ",
+      "description": "人的神经过敏、胆小怯懦、情感容易冲动的气质"
+  },
+  "深沉": {
+      "var_name": "SCH",
+      "description": "在其他人面前不会轻易的表现出自己的情绪或者想法"
+  },
+  "果断": {
+      "var_name": "GUOD",
+      "description": "下决定比较干脆、无拖泥带水"
+  },
+  "大大咧咧": {
+      "var_name": "DDLL",
+      "description": "不喜欢拐弯抹角，喜欢很直接，很现实去面对一些事情，也很活泼"
+  },
+  "率性": {
+      "var_name": "SX",
+      "description": "顺着本性，索性，形容人性情真实"
+  },
+  "懦弱": {
+      "var_name": "NR",
+      "description": "软弱无能"
+  },
+  "孤僻": {
+      "var_name": "GP",
+      "description": "形容人性情孤独，不合群，不能与人保持正常关系"
+  },
+  "仗义": {
+      "var_name": "ZY",
+      "description": "讲义气;守信用"
+  },
+  "害羞": {
+      "var_name": "HXIU",
+      "description": "容易感到不好意思;难为情"
+  },
+  "自负": {
+      "var_name": "ZFU",
+      "description": "自视甚高看不起别人"
+  },
+  "自恋": {
+      "var_name": "ZLA",
+      "description": "迷恋自己过分关注自己"
+  },
+  "多愁善感": {
+      "var_name": "DCSG",
+      "description": "经常发愁和伤感。形容人敏感脆弱伤感，任何事情都可能使他们进入消沉。类似林黛玉那种"
+  },
+  "玻璃心": {
+      "var_name": "BLX",
+      "description": "经不起批评指责或者嘲讽。玻璃心的人即使只碰到一点人生的挫折，就会受重大打击，甚至崩溃"
+  },
+  "古灵精怪": {
+      "var_name": "GLJG",
+      "description": "形容人聪明，调皮，惹人喜爱，一般用来形容有个性的女生和小孩子"
+  },
+  "机智": {
+      "var_name": "JIZ",
+      "description": "指聪明灵活，能随机应变；机智的人通常有良好的性情、敏锐的洞察力以及在紧急时刻快速反应的能力"
+  },
+  "狂妄": {
+      "var_name": "KW",
+      "description": "形容十分嚣张，目中无人"
+  },
+  "热心肠/乐于助人": {
+      "var_name": "LYZR",
+      "description": "形容很乐意主动帮助有需要的人们"
+  },
+  "外热内冷": {
+      "var_name": "WRNL",
+      "description": "为人随和，但内心防备心比较强。前者是对他人的态度，觉得帮助他人是无害而有益的；后者是对自身的态度，时刻保持戒心，不让自己受到伤害"
+  },
+  "外冷内热": {
+      "var_name": "WLNR",
+      "description": "外表看起来很冷淡，让人觉得不容易接近和相处，实质内心很善良很会关心别人"
+  },
+  "冷酷": {
+      "var_name": "LK",
+      "description": "冷淡苛刻，残酷无情，毫无同情心"
+  },
+  "温柔": {
+      "var_name": "WENR",
+      "description": "指角色性情温和柔软，体贴宽容"
+  },
+  "呆萌": {
+      "var_name": "DM",
+      "description": "傻的可爱"
+  }
+}

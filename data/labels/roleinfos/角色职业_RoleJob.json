@@ -1,0 +1,510 @@
+{
+  "丞相": {
+      "var_name": "CX",
+      "description": "协助皇帝管理一切军国大事，即所谓的“掌丞天子，助理万机”"
+  },
+  "摄政王": {
+      "var_name": "SZW",
+      "description": "代替或者代表年幼的、生病的或神志不清的及不具备执政能力的君主行使国家领导权的人"
+  },
+  "首辅": {
+      "var_name": "SF",
+      "description": "内阁首辅和领班军机大臣"
+  },
+  "将军": {
+      "var_name": "JJ",
+      "description": "高级军事将领的统称"
+  },
+  "仵作": {
+      "var_name": "WZ",
+      "description": "官府检验命案死尸的人"
+  },
+  "捕快": {
+      "var_name": "BK",
+      "description": "中国古代负责缉捕罪犯、传唤被告和证人、调查罪证的人"
+  },
+  "知府": {
+      "var_name": "ZF",
+      "description": "古代的地方职官名，州府最高行政长官"
+  },
+  "御史": {
+      "var_name": "YS",
+      "description": "古代中央机构中的官名。专管监察、司法"
+  },
+  "大理寺卿": {
+      "var_name": "DLSQ",
+      "description": "大理寺的长官，掌邦国折狱详刑之事"
+  },
+  "师爷": {
+      "var_name": "SY",
+      "description": "帮助军政大员办理事务的文人学士"
+  },
+  "士兵": {
+      "var_name": "SB",
+      "description": "军队中被授予士官和兵军衔的军人"
+  },
+  "侍卫": {
+      "var_name": "SW",
+      "description": "跟随左右，负责侍奉、保卫的人"
+  },
+  "画师": {
+      "var_name": "HS",
+      "description": "通过绘画获得劳动报酬"
+  },
+  "太医": {
+      "var_name": "TY",
+      "description": "封建社会专门为帝王和宫廷官员等上层统治阶级服务的医生"
+  },
+  "弟子": {
+      "var_name": "DZ",
+      "description": "徒弟"
+  },
+  "护法": {
+      "var_name": "HF",
+      "description": "门派势力中比较高级级别的职务"
+  },
+  "杀手": {
+      "var_name": "SS",
+      "description": "以谋取酬劳进行对某个目标或者某个群体（如家庭，小团体）的致命袭击"
+  },
+  "绣娘": {
+      "var_name": "XN",
+      "description": "掌握一定刺绣技艺的工人，因女性较多故称为绣娘"
+  },
+  "郎中": {
+      "var_name": "LZ",
+      "description": "古代的医生"
+  },
+  "农民": {
+      "var_name": "NM",
+      "description": "长时期从事农业生产的人，以此为生"
+  },
+  "村长": {
+      "var_name": "CZ",
+      "description": "村民委员会的一把手"
+  },
+  "妓女": {
+      "var_name": "JN",
+      "description": "从事色情服务的女子，一定要卖身"
+  },
+  "艺妓": {
+      "var_name": "YJ",
+      "description": "以歌舞为业的女子，如歌妓﹑舞妓，不卖身"
+  },
+  "男妓": {
+      "var_name": "NJ",
+      "description": "指从事色情行业，提供性服务的男性，卖身"
+  },
+  "牛郎": {
+      "var_name": "NL",
+      "description": "从事色情服务的男子，不卖身"
+  },
+  "舞姬": {
+      "var_name": "WJ",
+      "description": "指跳舞为业之人"
+  },
+  "书生": {
+      "var_name": "SSG",
+      "description": "泛指读书人"
+  },
+  "丫鬟": {
+      "var_name": "YAH",
+      "description": "供有钱人家役使的女孩子"
+  },
+  "镖师": {
+      "var_name": "BS",
+      "description": "快递和武装押运的结合"
+  },
+  "土匪": {
+      "var_name": "TF",
+      "description": "在地方上抢劫财物，为非作歹的武装匪徒"
+  },
+  "风水师": {
+      "var_name": "FSS",
+      "description": "具备风水知识，受人委托断定风水好坏、必要时并予以修改的一种职业"
+  },
+  "道士": {
+      "var_name": "DS",
+      "description": "中国道教的神职人员"
+  },
+  "捞尸人": {
+      "var_name": "LSR",
+      "description": "打捞尸体上岸"
+  },
+  "蛊师": {
+      "var_name": "GUS",
+      "description": "旧社会以迷信为职业﹐利用符咒等邪术为人安排吉凶祸福的人"
+  },
+  "卦师": {
+      "var_name": "GUAS",
+      "description": "卦师就是通过卦象来推测将要发生的事情"
+  },
+  "占卜师": {
+      "var_name": "ZBS",
+      "description": "是由外界事物的动向和变化向非人的灵体探询想要知道的事物的人"
+  },
+  "和尚": {
+      "var_name": "HS",
+      "description": "汉传佛教的神职人员"
+  },
+  "喇嘛": {
+      "var_name": "LM",
+      "description": "藏传佛教的神职人员"
+  },
+  "尼姑": {
+      "var_name": "NIG",
+      "description": "佛教中出家修行的女子"
+  },
+  "艺人": {
+      "var_name": "YIR",
+      "description": "涉足唱、跳、演、综艺等多个领域，但多不专精且没有大众高度认可的代表作"
+  },
+  "导演": {
+      "var_name": "DYN",
+      "description": "组织和团结剧组内所有的创作人员和技术人员和演出人员，发挥他们的才能，使众人的创造性劳动融为一体"
+  },
+  "歌手": {
+      "var_name": "GS",
+      "description": "指演唱歌曲及其他声乐作品的娱乐业人士"
+  },
+  "演员": {
+      "var_name": "YAN",
+      "description": "专职演出，或在表演艺术中扮演某个角色的人物"
+  },
+  "模特": {
+      "var_name": "MOT",
+      "description": "担任展示时尚产品、辅助宣传媒体广告、服务大众审美需求、表现摄影艺术理念等等相关工作的职业人士"
+  },
+  "制片人": {
+      "var_name": "ZPR",
+      "description": "提供资金或者资金筹措者，负责统筹指挥"
+  },
+  "编剧": {
+      "var_name": "BJU",
+      "description": "戏剧、电影等的剧本作者"
+  },
+  "网络主播": {
+      "var_name": "WLZB",
+      "description": "乐于分享、有自我展示欲望的网民分享自己，并在平台上面直播一些关于自己的东西"
+  },
+  "经纪人": {
+      "var_name": "JJR",
+      "description": "在演出、出版、影视、娱乐、美术、文物等文化市场上为供求双方充当媒介而收取佣金的经纪人"
+  },
+  "少帅": {
+      "var_name": "SHS",
+      "description": "常见于军旅，一般与军衔无关，多指某一军队的统帅的儿子"
+  },
+  "少将": {
+      "var_name": "SHJ",
+      "description": "将级军官中较高的一级军衔称号"
+  },
+  "特工": {
+      "var_name": "TEG",
+      "description": "属于政府雇员，为安全、军事、政治系统工作，执行一些秘密任务，主要通过武力解决"
+  },
+  "军医": {
+      "var_name": "JUNY",
+      "description": "军队中有军籍的医生"
+  },
+  "警察": {
+      "var_name": "JCHA",
+      "description": "武装性质的维护社会秩序的国家公职人员。按其任务不同可分为治安、交通、刑事、司法、边防、消防、户籍等警种"
+  },
+  "法医": {
+      "var_name": "FY",
+      "description": "利用各种技术或手段，在重要的时间节点内，通过公对公调查，公对公取证，进行现场医学勘察、医疗跟踪取证、伤情的活体医学检查观察、尸体解剖、症状分析、测试比对、观察审讯、遗物鉴定、调取监控、特殊查体，进行的一套法律医学鉴定"
+  },
+  "球员": {
+      "var_name": "QIUY",
+      "description": "球类运动员"
+  },
+  "电竞选手": {
+      "var_name": "DJXS",
+      "description": "参加电子游戏比赛的选手"
+  },
+  "赛车手": {
+      "var_name": "SCS",
+      "description": "参加赛车比赛的选手"
+  },
+  "间谍": {
+      "var_name": "JID",
+      "description": "窃取情报，主要通过智力解决问题"
+  },
+  "卧底": {
+      "var_name": "WOD",
+      "description": "预先潜伏在敌方了解情况，充当内应"
+  },
+  "侦探": {
+      "var_name": "ZT",
+      "description": "民间负责调查案件的职业"
+  },
+  "黑客": {
+      "var_name": "HKE",
+      "description": "一种精通计算机各类技术的计算机特别是网络内部运作的人"
+  },
+  "入殓师": {
+      "var_name": "RLS",
+      "description": "为死者化妆整仪，纳入棺中的职业"
+  },
+  "宇航员": {
+      "var_name": "YHY",
+      "description": "驾驶航天器，并在航天中从事科学研究或军事活动的人员"
+  },
+  "盗墓者": {
+      "var_name": "DMZ",
+      "description": "从事盗墓行业的人"
+  },
+  "欺诈师": {
+      "var_name": "QZS",
+      "description": "从事欺诈事业的人"
+  },
+  "老师": {
+      "var_name": "LSHI",
+      "description": "传授学生知识的人员，有各种教育类型（如语文、数学等）"
+  },
+  "学生": {
+      "var_name": "XUE",
+      "description": "正在学校、学堂或其他学习地方受教育的人"
+  },
+  "教练": {
+      "var_name": "JIL",
+      "description": "可提供练习训练策略，以增强客户已有的技能，资源和创造力"
+  },
+  "总裁": {
+      "var_name": "ZCAI",
+      "description": "商业组织机构中的一种职位，一般是组织中某一事务主要负责人或行政领导人"
+  },
+  "律师": {
+      "var_name": "LVS",
+      "description": "接受委托或者指定，为当事人提供诉讼代理或者辩护业务等法律服务的人员"
+  },
+  "医生": {
+      "var_name": "YISH",
+      "description": "钻研学习医学科学技术，挽救生命以治病为业的人，一般指临床医生"
+  },
+  "记者": {
+      "var_name": "JIZ",
+      "description": "从事采访和报道的工作人员"
+  },
+  "司机": {
+      "var_name": "SIJI",
+      "description": "指驾驶和控制车辆的人，包括路面车辆和铁路车辆在内"
+  },
+  "厨师": {
+      "var_name": "CHU",
+      "description": "是以烹饪为职业，以烹制菜点为主要工作内容的人"
+  },
+  "保镖": {
+      "var_name": "BAOB",
+      "description": "贴身保护政治人物、政府高官、企业家、艺人以及证人等重要人物，以防止其遭暗杀、绑架、攻击、骚扰及外泄机密等"
+  },
+  "护士": {
+      "var_name": "HUS",
+      "description": "观察病人体表体重情况，了解病人病情，配合医生治疗"
+  },
+  "白领": {
+      "var_name": "BAL",
+      "description": "从事脑力劳动的职员"
+  },
+  "设计师": {
+      "var_name": "SJS",
+      "description": "某个特定的专门领域创造或提供创意的工作，从事艺术与商业结合在一起的人。这些人通常是利用绘画或其他各种以视觉传达的方式来表现他们的工作或作品"
+  },
+  "家教": {
+      "var_name": "JIAJ",
+      "description": "家庭教师"
+  },
+  "心理咨询师": {
+      "var_name": "XLZXS",
+      "description": "从事心理咨询"
+  },
+  "声优": {
+      "var_name": "SYOU",
+      "description": "配音演员"
+  },
+  "编辑": {
+      "var_name": "BIJI",
+      "description": "指对作品等进行编写"
+  },
+  "助理": {
+      "var_name": "ZHLI",
+      "description": ""
+  },
+  "魔术师": {
+      "var_name": "MSS",
+      "description": "擅长变戏法的人"
+  },
+  "老板": {
+      "var_name": "BOSS",
+      "description": "私营工商业的财产所有者"
+  },
+  "漫画家": {
+      "var_name": "MHJ",
+      "description": "一类以从事漫画创作为生的人"
+  },
+  "店长": {
+      "var_name": "DZH",
+      "description": "门店的最高负责人"
+  },
+  "精神科医生": {
+      "var_name": "JSKYS",
+      "description": "治疗精神疾病的医生"
+  },
+  "快递员": {
+      "var_name": "KDY",
+      "description": "从事快件揽收、派送和客户信息收集、关系维护的人员"
+  },
+  "科研人员": {
+      "var_name": "KYAN",
+      "description": "从事科研工作的人"
+  },
+  "教授": {
+      "var_name": "PRO",
+      "description": "大学教师职称的最高级别"
+  },
+  "程序员": {
+      "var_name": "CODE",
+      "description": "从事程序开发、程序维护的专业人员"
+  },
+  "飞行员": {
+      "var_name": "FXY",
+      "description": "开民航飞机的驾驶员"
+  },
+  "造型师": {
+      "var_name": "ZXS",
+      "description": "具有一定的艺术造诣、美学素养、绘画基础历史知识和观察、分析生活的能力，能够掌握并熟练地运用化装技法和技巧，带领和指导助手完成化妆造型所规定的化装任务，为引领时尚的明星、名模、演员做时尚造型的一类人"
+  },
+  "服务员": {
+      "var_name": "FWY",
+      "description": "固定场所里提供一定范围内服务的人员"
+  },
+  "调香师": {
+      "var_name": "TXS",
+      "description": "使用香料及辅料，进行香精或香水配方设计和调配的人员"
+  },
+  "猎人": {
+      "var_name": "LIER",
+      "description": "以狩猎动物用其换取钱财为生的人"
+  },
+  "饲养员": {
+      "var_name": "SYY",
+      "description": "饲养牲畜的人"
+  },
+  "总统": {
+      "var_name": "PRES",
+      "description": "一个国家的领导人"
+  },
+  "鬼差": {
+      "var_name": "GUIC",
+      "description": "鬼使者"
+  },
+  "月老": {
+      "var_name": "YUE",
+      "description": "神话中主管婚姻的神"
+  },
+  "瘟神": {
+      "var_name": "WEN",
+      "description": "传说中能散播瘟疫的恶神"
+  },
+  "死神": {
+      "var_name": "DIE",
+      "description": "掌管死亡的神，源于西方的称呼"
+  },
+  "冥王": {
+      "var_name": "MIN",
+      "description": "冥界之主"
+  },
+  "牧师": {
+      "var_name": "WUS",
+      "description": "是在一般基督新教的教会中专职负责带领及照顾其他基督徒的人"
+  },
+  "魔法师": {
+      "var_name": "MOFS",
+      "description": "以驱使某种神秘力量的人群"
+  },
+  "召唤师": {
+      "var_name": "ZHS",
+      "description": "通常会通过咒语、物品、意念等形式召唤出不同属性的物种（即召唤兽），帮助召唤师进行战斗、治疗等"
+  },
+  "驱魔师": {
+      "var_name": "QUMS",
+      "description": "驱除各种恶灵的人"
+  },
+  "骑士": {
+      "var_name": "KNI",
+      "description": "欧洲封建时代为国王或其他长官服务的武士。是欧洲中世纪时，受过正规军事训练的骑兵，后来演变为一种荣誉称号，用于表示一种社会阶层"
+  },
+  "剑士": {
+      "var_name": "SWORD",
+      "description": "善于击剑的勇士"
+  },
+  "冒险家": {
+      "var_name": "ADV",
+      "description": "为了探测新事物等目的而深入危险或不为人知的地方进行探索的人"
+  },
+  "梦境师": {
+      "var_name": "DREAM",
+      "description": ""
+  },
+  "修真者": {
+      "var_name": "XZHZ",
+      "description": "修真世界里的修炼者"
+  },
+  "画手": {
+      "var_name": "HUAS",
+      "description": "绘画作品以换取经济报酬或其他利益的人"
+  },
+  "写手": {
+      "var_name": "XIES",
+      "description": "以文字换取报酬或其他利益的人"
+  },
+  "无业": {
+      "var_name": "WUYE",
+      "description": "待业或没有固定工作，处于无固定收入的状态"
+  },
+  "赏金猎人": {
+      "var_name": "SJLR",
+      "description": "为透过捕捉逃犯和通缉犯，获得物质性报酬（通常是金钱）的人"
+  },
+  "管家/执事": {
+      "var_name": "GUANJ",
+      "description": "指受聘于特定对象或人家，负责服侍指定对象的个人及家庭方面事务的工作者"
+  },
+  "职业英雄": {
+      "var_name": "HERO",
+      "description": "设定职业为“英雄”，往往身体素质优异，有些有着远超常人的强大力气和飞一般的速度，有些还拥有特殊能力"
+  },
+  "消防员": {
+      "var_name": "XFY",
+      "description": "政府或民间团体所成立的救灾救人团体成员"
+  },
+  "锻造师/工匠": {
+      "var_name": "DZS",
+      "description": "有工艺专长的匠人，如木匠、裁缝、铁匠、粉刷匠等等"
+  },
+  "船长": {
+      "var_name": "CHUAN",
+      "description": "水面船只或太空飞行器的最高负责人"
+  },
+  "船员/水手": {
+      "var_name": "SALI",
+      "description": "航海船上的工作人员"
+  },
+  "游戏全能系": {
+      "var_name": "QNX",
+      "description": "在游戏中承担多种位置功能，包括伤害、辅助、战术等"
+  },
+  "游戏DPS": {
+      "var_name": "DPS",
+      "description": "在游戏中承担输出位置的角色，输出能力出色，防御和辅助能力较弱"
+  },
+  "游戏MT": {
+      "var_name": "GMT",
+      "description": "在游戏中承担坦克位置的角色，主要负责承担伤害和吸引仇恨值的作用，防御能力出色但输出能力较弱"
+  },
+  "游戏辅助": {
+      "var_name": "GSUP",
+      "description": "在游戏中承担辅助位置的角色，可能负责治疗、上BUFF等责任，通常输出和防御能力较弱"
+  }
+}

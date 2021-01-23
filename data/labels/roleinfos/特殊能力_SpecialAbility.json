@@ -1,0 +1,54 @@
+{
+  "读心术": {
+      "var_name": "DXS",
+      "description": "能够洞悉别人思想的特异功能"
+  },
+  "预言术": {
+      "var_name": "YYS",
+      "description": "能够对未来的事情做出预言"
+  },
+  "炼药术": {
+      "var_name": "LYS",
+      "description": "炼制各种神奇丹药"
+  },
+  "透视": {
+      "var_name": "TS",
+      "description": "目光的视线能看穿密度高，不透明的物质"
+  },
+  "阴阳眼": {
+      "var_name": "YYY",
+      "description": "能看见鬼魂等其他人看不见的超自然现象存在"
+  },
+  "瞬间转移": {
+      "var_name": "SJZY",
+      "description": "在意念的控制下一个人由所在的地方在一瞬间到达同时空所想的目的地"
+  },
+  "吸食怨气": {
+      "var_name": "XSYQ",
+      "description": "吸收世间怨气并为自己所用"
+  },
+  "穿越时空": {
+      "var_name": "CYSK",
+      "description": "自身拥有从一个空间里通过某种途径转移到另外一个时间段不同的空间的能力"
+  },
+  "掌控时间": {
+      "var_name": "ZKSJ",
+      "description": "可以控制时间的停止和流失，以及时间的速度"
+  },
+  "快速愈合": {
+      "var_name": "KSYH",
+      "description": "以超自然的速度愈合伤口"
+  },
+  "魔法/法术": {
+      "var_name": "MF",
+      "description": "使用意念操控身边真实事物的变化，从而达到攻击、治疗、防御或者其他效果"
+  },
+  "变形": {
+      "var_name": "BX",
+      "description": "变换形态"
+  },
+  "超级力量": {
+      "var_name": "CJLL",
+      "description": "指拥有两种以上的特殊能力"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "独立女性": {
+      "var_name": "DLNX"
+  },
+  "选秀": {
+      "var_name": "XX"
+  },
+  "练习生": {
+      "var_name": "LXS"
+  },
+  "娱乐圈": {
+      "var_name": "YLQ"
+  },
+  "直播": {
+      "var_name": "ZB"
+  },
+  "网红": {
+      "var_name": "WH"
+  },
+  "赚钱": {
+      "var_name": "ZQ"
+  },
+  "整容": {
+      "var_name": "ZR"
+  },
+  "校园霸凌": {
+      "var_name": "XYBL"
+  },
+  "变美": {
+      "var_name": "BM"
+  },
+  "八卦": {
+      "var_name": "BG"
+  },
+  "电竞": {
+      "var_name": "DJ"
+  },
+  "逆袭": {
+      "var_name": "NX"
+  },
+  "年下恋": {
+      "var_name": "NXL"
+  }
+}

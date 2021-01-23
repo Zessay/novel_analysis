@@ -1,0 +1,14 @@
+{
+  "原创": {
+    "var_name": "YC"
+  },
+  "小说漫改": {
+      "var_name": "NOVEL"
+  },
+  "影视改编": {
+      "var_name": "TV"
+  },
+  "同人": {
+      "var_name": "FAN"
+  }
+}

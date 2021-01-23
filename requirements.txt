@@ -1,0 +1,6 @@
+wordcloud=1.8.1
+pywin32
+python-docx=0.8.10
+numpy=1.19.3
+jieba=0.42.1
+matplotlib=3.3.3

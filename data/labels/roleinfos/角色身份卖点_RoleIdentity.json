@@ -1,0 +1,222 @@
+{
+  "皇上": {
+      "var_name": "HS",
+      "description": "即皇帝"
+  },
+  "女帝": {
+      "var_name": "NH",
+      "description": "女皇帝"
+  },
+  "太子": {
+      "var_name": "TZ",
+      "description": "古代天子、诸侯的谪长子或儿子中即将继承帝位或王位的人"
+  },
+  "权臣": {
+      "var_name": "QC",
+      "description": "指掌握国家军政大权、威胁统治者的大臣"
+  },
+  "公主": {
+      "var_name": "GZ",
+      "description": "皇帝的女儿"
+  },
+  "废后": {
+      "var_name": "FH",
+      "description": "因为某些原因，如君主对皇后感情淡薄、皇后无子、皇后族属起兵造反、皇后本人犯罪以及政治斗争、丈夫被废、死后被废等等原因，被废的皇后或授予较低级别的位号、或被软禁于冷宫中而没有任何称号、或出家（实际上不能在宫外居住，大多在宫中落发修行）"
+  },
+  "王爷": {
+      "var_name": "WY",
+      "description": "封建时代尊称有王爵封号的人"
+  },
+  "皇后": {
+      "var_name": "HH",
+      "description": "皇帝的正配妻子"
+  },
+  "皇妃": {
+      "var_name": "HF",
+      "description": "皇帝的非正配妻子，不分是否得宠、地位等"
+  },
+  "宠妃": {
+      "var_name": "CF",
+      "description": "指的是帝王特别宠爱的嫔妃"
+  },
+  "皇子": {
+      "var_name": "HZI",
+      "description": "皇帝的儿子"
+  },
+  "农女": {
+      "var_name": "NN",
+      "description": "种田作品中农家出身的年轻女性角色"
+  },
+  "寡妇": {
+      "var_name": "GUAF",
+      "description": "死了丈夫的妇人"
+  },
+  "孤儿": {
+      "var_name": "GER",
+      "description": "指失去父母的儿童或者是未成年人"
+  },
+  "剩女": {
+      "var_name": "SNV",
+      "description": "指已经过了社会一般所认为的适婚年龄，但是仍然未结婚的女性"
+  },
+  "备胎": {
+      "var_name": "BEIT",
+      "description": "在恋爱中没有被对方选中但又被保持着藕断丝连关系的一类人"
+  },
+  "替身": {
+      "var_name": "TIS",
+      "description": "感情中找了一个与正身相似或者神似的人展开恋情。这个人即为替身"
+  },
+  "私生子": {
+      "var_name": "SSZ",
+      "description": "出生时，其父母无婚姻关系的孩子"
+  },
+  "弃妇": {
+      "var_name": "QIF",
+      "description": "指被丈夫因某种原因所抛弃或者遗弃的妻子"
+  },
+  "兵王": {
+      "var_name": "BINW",
+      "description": "各项军事技能顶尖"
+  },
+  "校花": {
+      "var_name": "XHUA",
+      "description": "指一个学校中大家公认长得漂亮，受人欢迎的女生"
+  },
+  "校草": {
+      "var_name": "XCAO",
+      "description": "指学校里大家公认的最帅的男生，学习成绩、运动等各方面都优秀的出色的男学生"
+  },
+  "男神": {
+      "var_name": "NANS",
+      "description": "可望而不可及的男人的统称，一般指女生们心仪的对象或偶像。（指大家公认的男神，非某人的男神）"
+  },
+  "女神": {
+      "var_name": "NVS",
+      "description": "与男神对应"
+  },
+  "土豪": {
+      "var_name": "TUH",
+      "description": "有钱但是没有内涵"
+  },
+  "鬼夫": {
+      "var_name": "GUIF",
+      "description": "老公是个鬼"
+  },
+  "童养媳": {
+      "var_name": "TYX",
+      "description": "从小被人抱养，长大成年后，就要成为那家的儿媳妇"
+  },
+  "赘婿": {
+      "var_name": "ZXU",
+      "description": "即入赘的女婿，指结婚后到女方家中落户的男子"
+  },
+  "偶像": {
+      "var_name": "OUX",
+      "description": "泛指具有号召力而拥有狂热崇拜者的人"
+  },
+  "网红": {
+      "var_name": "WAH",
+      "description": "在现实或者网络生活中因为某个事件或者某个行为而被网民关注从而走红的人或长期持续输出专业知识而从红的人"
+  },
+  "女官": {
+      "var_name": "NVG",
+      "description": "高级的宫女，有一定的品秩，并且领有俸禄"
+  },
+  "花魁": {
+      "var_name": "HKUI",
+      "description": "比喻有名的妓女"
+  },
+  "老板娘": {
+      "var_name": "LBN",
+      "description": "女的老板就叫老板娘，或老板的老婆也可以叫老板娘"
+  },
+  "黑道人士": {
+      "var_name": "HDRS",
+      "description": "混黑社会的人"
+  },
+  "女配": {
+      "var_name": "NVP",
+      "description": "主是原故事剧情中的女配，现行故事中的女主"
+  },
+  "男配": {
+      "var_name": "NANP",
+      "description": "男主是原故事剧情中的男配，现行故事中的男主"
+  },
+  "暴君": {
+      "var_name": "BAOJ",
+      "description": "指专制无道的君主，残酷地或野蛮地行使专制权力的统治者"
+  },
+  "凤凰男": {
+      "var_name": "FHN",
+      "description": "指出身贫寒、努力拼搏的男性。具体是说那些出身贫寒，几经辛苦考上大学，毕业后留在城市工作生活的男子"
+  },
+  "门主": {
+      "var_name": "MZHU",
+      "description": "一个门派的领导者"
+  },
+  "掌门": {
+      "var_name": "ZMEN",
+      "description": "武林中某一门派的主持人"
+  },
+  "家主": {
+      "var_name": "JIAZ",
+      "description": "一个家族的掌权人，家族内部推举的、公认的代表"
+  },
+  "少主": {
+      "var_name": "SHAOZ",
+      "description": ""
+  },
+  "首徒": {
+      "var_name": "SHT",
+      "description": "首席弟子"
+  },
+  "武林盟主": {
+      "var_name": "WLMZ",
+      "description": "江湖中的首领一样，具有统领整个武林的权威"
+  },
+  "富二代": {
+      "var_name": "FED",
+      "description": "继承巨额财产的富家子"
+  },
+  "富家千金": {
+      "var_name": "FJQJ",
+      "description": "有钱人家的女儿"
+  },
+  "落魄千金": {
+      "var_name": "LPQJ",
+      "description": "落魄的有钱人家的女儿，可能遭遇过家道中落、被家族或家庭遗弃、抛弃或不受待见"
+  },
+  "嫡女": {
+      "var_name": "DIN",
+      "description": "正妻所生之女"
+  },
+  "庶女": {
+      "var_name": "SNV",
+      "description": "侧室、偏房，妾所生的女儿"
+  },
+  "庶子": {
+      "var_name": "SZI",
+      "description": "指妾所生的儿子"
+  },
+  "纨绔子弟": {
+      "var_name": "WKZD",
+      "description": "指富贵人家的子弟。有钱还浪。"
+  },
+  "败家子": {
+      "var_name": "BJZ",
+      "description": "不务正业、把家产挥霍一空的子弟"
+  },
+  "废柴": {
+      "var_name": "FCH",
+      "description": "一个人没有用到一无是处的地步，通，废物，废材等，在修真作品中通常指无法修炼或体质很差的人"
+  },
+  "穷人": {
+      "var_name": "QIR",
+      "description": ""
+  },
+  "学霸": {
+      "var_name": "XB",
+      "description": "擅长学习，考试总能轻松高分的人"
+  }
+}

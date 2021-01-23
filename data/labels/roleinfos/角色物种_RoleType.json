@@ -1,0 +1,90 @@
+{
+  "人类": {
+      "var_name": "RL",
+      "description": "角色物种和外形均为人类"
+  },
+  "兽人": {
+      "var_name": "SR",
+      "description": "人形兽族"
+  },
+  "半兽人": {
+      "var_name": "BSR",
+      "description": "人兽混形"
+  },
+  "僵尸": {
+      "var_name": "JS",
+      "description": "人死后，尸体在某种作用下重新起立行走"
+  },
+  "龙族": {
+      "var_name": "LZ",
+      "description": "古代神话里的神秘种族"
+  },
+  "神族": {
+      "var_name": "SZ",
+      "description": "神之种族"
+  },
+  "动物": {
+      "var_name": "DW",
+      "description": "非拟人的动物"
+  },
+  "怪物": {
+      "var_name": "GW",
+      "description": "怪异的物类"
+  },
+  "魔族": {
+      "var_name": "MZ",
+      "description": "没有翅膀的神族，是由神族堕落而成，作品设定中直接提到的魔族"
+  },
+  "妖族": {
+      "var_name": "YZ",
+      "description": "动植物成精"
+  },
+  "兽族": {
+      "var_name": "SOZ",
+      "description": "角色物种设定为兽族，外形完全为动物形态且不会变化为人形"
+  },
+  "吸血鬼": {
+      "var_name": "XXG",
+      "description": "角色物种设定为吸血鬼"
+  },
+  "外形人": {
+      "var_name": "WXR",
+      "description": "角色物种设定为外星人"
+  },
+  "机器人": {
+      "var_name": "JQR",
+      "description": "角色物种设定为机器人，有机器的特征"
+  },
+  "精神体": {
+      "var_name": "JST",
+      "description": "虚无缥缈的意识形态，灵魂体，由其他角色想象出来的角色等"
+  },
+  "狼人": {
+      "var_name": "LR",
+      "description": "是西方民间传说的一种兽人，人与狼的混合体"
+  },
+  "狐狸精": {
+      "var_name": "HLJ",
+      "description": "此处指狐狸修炼成精"
+  },
+  "精灵": {
+      "var_name": "JL",
+      "description": "此处指西方幻想出的特殊种族"
+  },
+  "丧尸": {
+      "var_name": "SS",
+      "description": "活人因病毒感染、科学药物、生化因素等原因而变成的，或死人因病毒感染、科学药物、生化因素等原因而复生，没有自主意识，但能走动或使用工具，有些丧尸可以被操控"
+  },
+  "系统NPC": {
+      "var_name": "NPC",
+      "description": "发布系统任务的角色，形态不定"
+  },
+  "天使": {
+      "var_name": "TS",
+      "description": "西幻作品设定下的一个种族"
+  },
+  "恶魔": {
+      "var_name": "EM",
+      "description": "西幻作品设定下的一个种族"
+  }
+}
