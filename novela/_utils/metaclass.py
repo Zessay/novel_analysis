@@ -13,18 +13,26 @@ class LabelEnumMeta(enum.EnumMeta):
         obj._value2member_map_ = {}
         # value表示这个值对应的索引
         # display_name表示这个枚举类对应的中文名
+        # description对应该枚举类的描述
         # children对应存在二级类别的枚举类
         for m in obj:
             if isinstance(m.value, (tuple, list)):
                 if len(m.value) == 2:
                     value, display_name = m.value
-                    m._value = value
+                    m._value_ = value
                     m.display_name = display_name
                     m.children = None
                 elif len(m.value) == 3:
-                    value, display_name, children = m.value
-                    m._value = value
+                    value, display_name, description = m.value
+                    m._value_ = value
                     m.display_name = display_name
+                    m.description = description
+                    m.children = None
+                elif len(m.value) == 4:
+                    value, display_name, description, children = m.value
+                    m._value_ = value
+                    m.display_name = display_name
+                    m.description = description
                     m.children = children
                 else:
                     value = m.value
@@ -54,6 +62,7 @@ class LoadEnumInterface(enum.Enum):
         """
         result = None
         for subclass in cls.get_all_subclasses():
+            # print(subclass.__name__.lower())
             if subclass.__name__.lower() == class_name.lower():
                 if result is None:
                     result = subclass

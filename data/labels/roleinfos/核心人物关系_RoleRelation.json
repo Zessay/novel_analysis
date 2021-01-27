@@ -1,6 +1,6 @@
 {
   "亲人关系": {
-      "var_name": "QR",
+      "var_name": "RELATIVE",
       "description": "有血缘关系（或名义上/感情上）的人",
       "children": {
           "父（母子）女": {
@@ -22,7 +22,7 @@
       }
   },
   "爱恋关系": {
-      "var_name": "AL",
+      "var_name": "ATTACH",
       "description": "以爱情情感作为关系纽带的人",
       "children": {
           "恋人": {
@@ -84,7 +84,7 @@
       }
   },
   "友情关系": {
-      "var_name": "YQ",
+      "var_name": "FRIEND",
       "description": "以友情作为关系纽带的人",
       "children": {
           "普通朋友": {
@@ -106,7 +106,7 @@
       }
   },
   "职场/社会关系": {
-      "var_name": "SH",
+      "var_name": "SOCIAL",
       "description": "职场或社会生活中形成的关系",
       "children": {
           "师徒": {
@@ -156,7 +156,7 @@
       }
   },
   "敌对关系": {
-      "var_name": "DD",
+      "var_name": "ENEMY",
       "description": "两人以恩怨纠葛或仇恨建立的关系纽带",
       "children": {
           "情敌": {
@@ -174,22 +174,22 @@
       }
   },
   "饲养": {
-      "var_name": "SY",
+      "var_name": "FEEDING",
       "description": "指对某个角色像对动物一样培养与照顾，主人与宠物的关系（泛指猫、狗、人、怪物等）",
       "children": {}
   },
   "身份替身": {
-      "var_name": "TS",
+      "var_name": "SUBSTITUTE",
       "description": "角色A代替角色B的身份完成某件事",
       "children": {}
   },
   "利用关系": {
-      "var_name": "LY",
+      "var_name": "UTILIZE",
       "description": "角色A利用角色B达成某个目的，或AB两个角色互相利用",
       "children": {}
   },
   "囚禁关系": {
-      "var_name": "QJ",
+      "var_name": "PRISON",
       "description": "角色A对B形成精神或肉体上的控制",
       "children": {}
   }

@@ -5,11 +5,16 @@ import os
 import re
 import docx
 import jieba
+import logging
 import wordcloud
 import numpy as np
+from pathlib import Path
 from matplotlib import colors
 from win32com import client as winc
 from typing import Set, List, Optional, Union, Callable
+
+import novela.constants as constants
+
 
 jieba.initialize()
 
@@ -223,3 +228,24 @@ def repair_file(path: str, files: Union[str, List[str]]) -> Union[str, List[str]
         return files
     else:
         raise TypeError("Only str or List[str] can be recognized.")
+
+
+def init_logger(log_file=None, log_file_level=logging.NOTSET, log_on_console=True):
+    """用于初始化log对象，可以选择是否记录在文件中以及是否在屏幕上显示"""
+    if isinstance(log_file, Path):
+        log_file = str(log_file)
+
+    log_format = logging.Formatter(fmt='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+                                   datefmt='%m/%d/%Y %H:%M:%S')
+    logger = logging.getLogger(constants.PACKAGE_NAME)
+    logger.setLevel(logging.INFO)
+    if log_on_console:
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(log_format)
+        logger.handlers = [console_handler]
+    if log_file and log_file != "":
+        file_handler = logging.FileHandler(log_file)
+        file_handler.setLevel(log_file_level)
+        file_handler.setFormatter(log_format)
+        logger.addHandler(file_handler)
+    return logger

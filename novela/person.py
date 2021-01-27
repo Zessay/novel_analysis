@@ -41,6 +41,32 @@ class Person(object):
         self._speciality = speciality
         self._character = character
         self._weakness = weakness
+        self.dialog_sents = {}     # 表示该人物所说的话，元素是键值对的形式，键表示该句话出现的章节(int)，值表示该人物该章节说话的内容(List[str])
+        self.include_sents = {}    # 表示不属于该人物所说的话，但是包含该人物名字的语句，元素同上
+
+    def add_sent2dialog(self, sent: str, chapter: int = 0):
+        if chapter in self.dialog_sents:
+            self.dialog_sents[chapter].append(sent)
+        else:
+            self.dialog_sents[chapter] = [sent]
+
+    def add_sent2include(self, sent: str, chapter: int = 0):
+        if chapter in self.include_sents:
+            self.include_sents[chapter].append(sent)
+        else:
+            self.include_sents[chapter] = [sent]
+
+    def add_sents2dialog(self, sents: List[str], chapter: int = 0):
+        if chapter in self.dialog_sents:
+            self.dialog_sents[chapter].extend(sents)
+        else:
+            self.dialog_sents[chapter] = sents
+
+    def add_sents2include(self, sents: List[str], chapter: int = 0):
+        if chapter in self.include_sents:
+            self.include_sents[chapter].extend(sents)
+        else:
+            self.include_sents[chapter] = sents
 
     @property
     def name(self):
