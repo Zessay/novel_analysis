@@ -12,8 +12,7 @@ IT = "它"
 TA = "ta"
 
 # --------------- 一些文件路径 -------------------
-# LABELS = "../data/config/labels.json"
-LABELS_BASE_PATH = "../data/labels"
+LABELS_BASE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data/labels")
 BASE_INFO = os.path.join(LABELS_BASE_PATH, "baseinfos")
 IMAGE_INFO = os.path.join(LABELS_BASE_PATH, "imageinfos")
 STORY_INFO = os.path.join(LABELS_BASE_PATH, "storyinfos")
@@ -27,5 +26,6 @@ LOG_FILE = "../novel.log"
 
 
 # --------------- 预定义时用到的变量 -------------------
+# 所有标签文件放在一个列表中
 ALL_LABELS_PATH = [BASE_INFO, IMAGE_INFO, STORY_INFO,
                    ROLE_INFO, OTHER_INFO]

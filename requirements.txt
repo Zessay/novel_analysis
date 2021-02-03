@@ -4,3 +4,5 @@ python-docx=0.8.10
 numpy=1.19.3
 jieba=0.42.1
 matplotlib=3.3.3
+gensim=3.8.3
+scikit-learn=0.24.1
