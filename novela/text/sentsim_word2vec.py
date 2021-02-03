@@ -12,7 +12,7 @@ from novela.utils import load_stopwords
 from novela.text.sim_word2vec import WordVectorSimilarity
 
 
-logger = logger.getChild("sentsim_word2vec")
+logger = logger.getChild("sentvector")
 
 
 class SentVectorSimilarity(WordVectorSimilarity):
