@@ -16,6 +16,7 @@ from typing import Set, List, Optional, Union, Callable
 import novela.constants as constants
 
 
+# 初始化结巴分词
 jieba.initialize()
 
 

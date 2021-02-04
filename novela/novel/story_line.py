@@ -23,3 +23,15 @@ class StoryLine(object):
         self.second_step = second_step
         self.third_step = third_step
         self.fourth_step = fourth_step
+
+    def add_info_to_storyline(self, **kwargs):
+        if "opening" in kwargs:
+            self.opening = kwargs.get("opening")
+        if "first_step" in kwargs:
+            self.first_step = kwargs.get("first_step")
+        if "second_step" in kwargs:
+            self.second_step = kwargs.get("second_step")
+        if "third_step" in kwargs:
+            self.third_step = kwargs.get("third_step")
+        if "fourth_step" in kwargs:
+            self.fourth_step = kwargs.get("fourth_step")

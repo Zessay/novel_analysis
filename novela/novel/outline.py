@@ -39,6 +39,30 @@ class Outline(object):
         self._background = background
         self._summarization = summarization
 
+    def add_info_to_outline(self, **kwargs):
+        title = kwargs.get("title", None)
+        novel_author = kwargs.get("novel_author", None)
+        comic_author = kwargs.get("comic_author", None)
+        if title is not None:
+            self._title = title
+        if novel_author is not None:
+            self._novel_author = novel_author
+        if comic_author is not None:
+            self._comic_author = comic_author
+
+        if "novel_type" in kwargs:
+            self._novel_type = kwargs.get("novel_type")
+        if "target_user_start" in kwargs:
+            self._target_user_start = kwargs.get("target_user_start")
+        if "target_user_end" in kwargs:
+            self._target_user_end = kwargs.get("target_user_end")
+        if "features" in kwargs:
+            self._features = kwargs.get("features")
+        if "background" in kwargs:
+            self._background = kwargs.get("background")
+        if "summarization" in kwargs:
+            self._summarization = kwargs.get("summarization")
+
     @property
     def title(self):
         return self._title
