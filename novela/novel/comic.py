@@ -37,17 +37,25 @@ class Section:
 class Comic:
     def __init__(self, name: str = None):
         self._name = name                                   # 表示小说/漫画的名称
+        self.script_writer: str = None                      # 表示漫画编剧
         self.sections: List[Section] = []                   # 表示该小说/漫画的所有章节
         self.first_role: Person = None                      # 表示该小说的第一主角
         self.second_role: Person = None                     # 表示该小说的第二主角
         self.other_roles: List[Person] = []                 # 表示小说的其他角色
         self.relations: List[Tuple[str, str, str]] = []     # 表示小说中存在的人物关系，每一个元素是一个三元组(head, relation, tail)
 
-        self.outline: Outline = None                        # 表示漫画的大纲
+        self.outline: Outline = None                        # 表示漫画的大纲（novel_author对应`原作`，comic_author对应`主笔`）
         self.storyline: StoryLine = None                    # 表示整个故事的起承转合
 
         # 将所有角色放到一个列表中便于索引
         self.roles = [self.first_role, self.second_role] + self.other_roles
+        # 保存所有角色的名字
+        self.roles_names = []
+        for role in self.roles:
+            if role is not None:
+                self.roles_names.append(role.name)
+            else:
+                self.roles_names.append(None)
 
     @property
     def name(self):
@@ -59,7 +67,7 @@ class Comic:
 
     def _inspect_section(self, section_id: int):
         """
-        表示根据section_id检查当前sections的数量
+        表示根据section_id检查当前sections的数量，如果没有则添加对应的section
         :param section_id:
         :return:
         """
@@ -75,6 +83,7 @@ class Comic:
             self.sections += ([None] * none_section_num)
 
     def _inspect_relation_triplets(self, relation: Tuple[str, str, str]):
+        """检查relation triplets的类型"""
         if not isinstance(relation, tuple):
             raise TypeError(f"The relation triplets should be `tuple` type, while get `{type(relation)}`!")
         if len(relation) != 3:
@@ -93,7 +102,9 @@ class Comic:
         # 获取当前章节的id
         section_id = section.section_id
         self._inspect_section(section_id)
-        self.sections[section_id] = section
+        self.add_sentences_to_section(sentences=section.sentences,
+                                      section_id=section_id,
+                                      title=section.title)
 
     def add_sections(self, sections: List[Section]):
         """
@@ -130,6 +141,21 @@ class Comic:
             sentence = sentence_obj
 
         self.sections[section_id].sentences.append(sentence)
+        # --- 向对应章节添加语句之后，还需要考虑该语句的讲话人，并且向对应的角色中添加对应的语句 ---
+        # 首先，如果当前语句的对话人不为None
+        # 否则考虑向include中添加
+        if sentence.speaker is not None and len(sentence.speaker) > 0:
+            self.add_dialog_sentence_to_role(role_name=sentence.speaker,
+                                             sents=sentence.sentence,
+                                             section=section_id)
+        else:
+            # 检查当前语句是否包含人名
+            # 如果包含，添加到对应人名的include中去
+            for name in self.roles_names:
+                if name in sentence.sentence:
+                    self.add_include_sentence_to_role(role_name=name,
+                                                      sents=sentence.sentence,
+                                                      section=section_id)
 
     def add_sentences_to_section(self,
                                  sentences: Union[List[Sentence], List[Tuple[str, str]]],
@@ -166,7 +192,7 @@ class Comic:
                 section_count += 1
                 sentence_count += len(sentences)
             else:
-                logger.warning(f"第{i}个元素当前内容的键中{content.keys()}不同时包含`section_id`和`sentences`！！！")
+                logger.warning(f"第{i}个元素当前内容的键中{content.keys()}没有同时包含`section_id`和`sentences`！！！")
 
         logger.info(f"共计添加了{sentence_count}个句子到{section_count}个章节中！")
 
@@ -186,12 +212,14 @@ class Comic:
                         exist = True
                         if replace:
                             self.roles[i] = role
+                            self.roles_names[i] = role.name
                             self.other_roles[i-2] = role
                         break
         # 如果没有存在，则添加到Other roles和roles中
         if not exist:
             self.other_roles.append(role)
             self.roles.append(role)
+            self.roles_names.append(role.name)
 
     def get_role_according_name(self, role_name: str) -> Person:
         """根据角色名字获取角色对象"""
@@ -218,12 +246,14 @@ class Comic:
         """添加第一主角的角色信息"""
         if self.first_role is None:
             self.first_role = Person()
+            self.roles[0] = self.first_role
         self._add_info_to_role(self.first_role, **kwargs)
 
     def add_info_to_second_role(self, **kwargs):
         """添加第二主角的角色信息"""
         if self.second_role is None:
             self.second_role = Person()
+            self.roles[1] = self.second_role
         self._add_info_to_role(self.second_role, **kwargs)
 
     def add_info_to_role(self, role_name: str, **kwargs):

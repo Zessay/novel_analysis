@@ -21,14 +21,19 @@ def lazy_load_enums(path: str):
     files = os.listdir(path)
     for file in files:
         # 首先根据文件名获取类的中文名
-        enum_name = file.split("_")[1][:-5]
-        with open(os.path.join(path, file), 'r', encoding="utf-8") as f:
-            data = json.load(f)
-        result_dict = arrange_as_dict(data)
-        # 定义该枚举类并添加到全局变量中
-        globals()[enum_name] = LabelEnum(enum_name, result_dict)
+        enum_cn_name, enum_name = file.split("_")
+        enum_name = enum_name[:-5]
         global ENUM_NAMES
-        ENUM_NAMES.append(enum_name)
+        if enum_name not in ENUM_NAMES:
+            with open(os.path.join(path, file), 'r', encoding="utf-8") as f:
+                data = json.load(f)
+            result_dict = arrange_as_dict(data)
+            # 定义该枚举类并添加到全局变量中
+            globals()[enum_name] = LabelEnum(enum_name, result_dict)
+            # 为每个枚举类定义中文名的常规属性（这个属性不属于枚举属性）
+            # 这个操作必须在枚举类定义结束之后执行
+            globals()[enum_name].cn_name = enum_cn_name
+            ENUM_NAMES.append(enum_name)
 
 
 def arrange_as_dict(data: Dict):
@@ -48,7 +53,9 @@ def arrange_as_dict(data: Dict):
             if len(children) <= 0:
                 item_list = [i, cls_name, description, None]
             else:
-                gen_children_enum_class(children_enum_name, cls_dict["children"])
+                gen_children_enum_class(enum_name=children_enum_name,
+                                        enum_cn_name=cls_name,
+                                        data=cls_dict["children"])
                 item_list = [i, cls_name, description, globals()[children_enum_name]]
             result_dict[var_name] = item_list
         elif "var_name" in cls_dict and "description" in cls_dict:
@@ -58,18 +65,20 @@ def arrange_as_dict(data: Dict):
             item_list = [i, cls_name]
             result_dict[cls_dict["var_name"]] = item_list
         else:
-            raise ValueError('At least, "var_name" should be in the "enum_dict".')
+            raise ValueError('At least, `var_name` should be in the "enum_dict".')
 
     return result_dict
 
 
-def gen_children_enum_class(enum_name: str, data: Dict):
+def gen_children_enum_class(enum_name: str, enum_cn_name: str, data: Dict):
     """用于生成enum中children的枚举类"""
-    result_dict = arrange_as_dict(data)
-    globals()[enum_name] = LabelEnum(enum_name, result_dict)
     global ENUM_NAMES
-    # 将定义好的枚举类类名保存，便于动态加载
-    ENUM_NAMES.append(enum_name)
+    if enum_name not in ENUM_NAMES:
+        result_dict = arrange_as_dict(data)
+        globals()[enum_name] = LabelEnum(enum_name, result_dict)
+        globals()[enum_name].cn_name = enum_cn_name    # 定义孩子枚举类的中文类别名
+        # 将定义好的枚举类类名保存，便于动态加载
+        ENUM_NAMES.append(enum_name)
 
 
 
