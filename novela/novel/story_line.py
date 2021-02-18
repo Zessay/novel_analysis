@@ -35,3 +35,17 @@ class StoryLine(object):
             self.third_step = kwargs.get("third_step")
         if "fourth_step" in kwargs:
             self.fourth_step = kwargs.get("fourth_step")
+
+    def get_sentences(self):
+        result = []
+        if self.opening:
+            result.append(self.opening)
+        if self.first_step:
+            result.append(self.first_step)
+        if self.second_step:
+            result.append(self.second_step)
+        if self.third_step:
+            result.append(self.third_step)
+        if self.fourth_step:
+            result.append(self.fourth_step)
+        return result

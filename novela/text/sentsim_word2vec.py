@@ -2,13 +2,13 @@
 # @Author: 莫冉
 # @Date: 2021-02-03
 import jieba
-from typing import Union, Dict, List, Optional, Tuple
+from typing import Union, Dict, List, Optional, Tuple, Set
 import numpy as np
 from gensim.models.word2vec import Word2VecKeyedVectors
 from sklearn.metrics.pairwise import cosine_similarity
 
 from novela import logger
-from novela.utils import load_stopwords
+from novela.utils.common import load_stopwords
 from novela.text.sim_word2vec import WordVectorSimilarity
 
 
@@ -17,15 +17,17 @@ logger = logger.getChild("sentvector")
 
 class SentVectorSimilarity(WordVectorSimilarity):
     def __init__(self,
-                 w2v_file: str,
-                 stopwords_file: Optional[str] = None,
+                 w2v_file: str = None,
+                 stopwords: Optional[Union[str, Set[str]]] = None,
                  word2vec: Union[Word2VecKeyedVectors, Dict[str, np.ndarray]] = None):
         super().__init__(w2v_file, word2vec)
 
-        if stopwords_file is None:
+        if stopwords is None:
             self.stopwords = []
+        elif isinstance(stopwords, set):
+            self.stopwords = stopwords
         else:
-            self.stopwords = load_stopwords(stopwords_file)
+            self.stopwords = load_stopwords(stopwords)
 
     def _get_sent_vector(self, sent: Union[str, List[str]]):
         # 如果是str型则要进行分词

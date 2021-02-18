@@ -14,7 +14,8 @@ logger = logger.getChild("word2vector")
 
 
 class WordVectorSimilarity:
-    def __init__(self, w2v_file: str,
+    def __init__(self,
+                 w2v_file: str = None,
                  word2vec: Union[Word2VecKeyedVectors, Dict[str, np.ndarray]] = None):
         if w2v_file is None and word2vec is None:
             raise ValueError(f"`w2v_file` and `word2vec` can both be None.")

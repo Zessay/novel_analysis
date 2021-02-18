@@ -5,11 +5,8 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
 
-from pathlib import Path
-from novela.utils import rename_doc_and_save, get_sentences, sort_file
-from matplotlib import cm
+from novela.utils.common import get_sentences, sort_file
 
-import docx
 import re
 
 def main():

@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
 import numpy as np
 import pandas as pd
 from collections import Counter
-from novela.utils import get_wordcloud, get_sentences, get_wordlist, load_stopwords, repair_file, sort_file
+from novela.utils.common import get_wordcloud, get_sentences, get_wordlist, load_stopwords, repair_file, sort_file
 import novela.constants as constants
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm

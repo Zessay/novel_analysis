@@ -42,7 +42,7 @@ class BaseLabel:
         self.display_names = []
         self.descriptions = []
         for item in self.enum_class:
-            self.enum_names.append(item.name)
+            self.enum_names.append(item.name)   # enum_names对应的是枚举类类别的英文名
             self.enum_values.append(item.value)
             if hasattr(item, "display_name"):
                 self.display_names.append(item.display_name)
@@ -70,7 +70,7 @@ class BaseLabel:
             self._enum_class = ec
         else:
             self._enum_class = LabelEnum.load_class(ec)
-        # 定义玩当前的枚举类之后，需要获取其中的一些参数
+        # 定义完当前的枚举类之后，需要获取其中的一些参数
         self._init_enum_attrs()
 
     def __iter__(self):
@@ -89,6 +89,7 @@ class BaseLabel:
 
     def to_json(self):
         return {self.name: self._value}
+
 
 @dataclass
 class StringLabel:
@@ -189,7 +190,7 @@ class Label:
         # 下面这些标签仍然归类到role_info这一个大类中
         self.major_roles_relation_first: BaseLabel = BaseLabel(enum_name="RoleRelation",
                                                                name="核心人物关系（第一层）")          # 对应“核心人物关系（第一层）”
-        self.major_roles_relation_second: BaseLabel = BaseLabel(enum_name="RoleRelation",
+        self.major_roles_relation_second: BaseLabel = BaseLabel(enum_name=None,
                                                                 name="核心人物关系（第二层）")         # 对应“核心人物关系（第二层）”
         self.major_roles_relation_routine: BaseLabel = BaseLabel(enum_name="RoleRelationRoutine",
                                                                  name="主要人物关系套路")             # 对应“主要人物关系套路”（两个关键词）
@@ -215,5 +216,7 @@ class Label:
         # 更新角色信息
         result["角色信息"] = roleinfo_dict
         result["其他信息"] = self.others.to_json()
+
+        return result
 
 

@@ -39,8 +39,8 @@ class Comic:
         self._name = name                                   # 表示小说/漫画的名称
         self.script_writer: str = None                      # 表示漫画编剧
         self.sections: List[Section] = []                   # 表示该小说/漫画的所有章节
-        self.first_role: Person = None                      # 表示该小说的第一主角
-        self.second_role: Person = None                     # 表示该小说的第二主角
+        self._first_role: Person = None                      # 表示该小说的第一主角
+        self._second_role: Person = None                     # 表示该小说的第二主角
         self.other_roles: List[Person] = []                 # 表示小说的其他角色
         self.relations: List[Tuple[str, str, str]] = []     # 表示小说中存在的人物关系，每一个元素是一个三元组(head, relation, tail)
 
@@ -48,7 +48,7 @@ class Comic:
         self.storyline: StoryLine = None                    # 表示整个故事的起承转合
 
         # 将所有角色放到一个列表中便于索引
-        self.roles = [self.first_role, self.second_role] + self.other_roles
+        self.roles = [self._first_role, self._second_role] + self.other_roles
         # 保存所有角色的名字
         self.roles_names = []
         for role in self.roles:
@@ -64,6 +64,26 @@ class Comic:
     @name.setter
     def name(self, n: str):
         self._name = n
+
+    @property
+    def first_role(self):
+        return self._first_role
+
+    @first_role.setter
+    def first_role(self, r: Person):
+        self._first_role = r
+        self.roles[0] = self._first_role
+        self.roles_names[0] = self._first_role.name
+
+    @property
+    def second_role(self):
+        return self._second_role
+
+    @second_role.setter
+    def second_role(self, r: Person):
+        self._second_role = r
+        self.roles[1] = self._second_role
+        self.roles_names[1] = self._second_role.name
 
     def _inspect_section(self, section_id: int):
         """
@@ -92,6 +112,23 @@ class Comic:
         if not (isinstance(relation[0], str) and isinstance(relation[1], str) and isinstance(relation[2], str)):
             raise TypeError(f"We hope that the elements of `relation` are `str` type, while `head`/`relation`/`tail` "
                             f"is respectively `{type(relation[0])}`/`{type(relation[1])}`/`{type(relation[2])}`!")
+
+    def _append_sentence_to_role(self, sentence: Sentence, section_id: int):
+        """向对应章节添加语句之后，还需要考虑该语句的讲话人，并且向对应的角色中添加对应的语句"""
+        # 首先，如果当前语句的对话人不为None
+        # 否则考虑向include中添加
+        if sentence.speaker is not None and len(sentence.speaker) > 0:
+            self.add_dialog_sentence_to_role(role_name=sentence.speaker,
+                                             sents=sentence.sentence,
+                                             section=section_id)
+        else:
+            # 检查当前语句是否包含人名
+            # 如果包含，添加到对应人名的include中去
+            for name in self.roles_names:
+                if name in sentence.sentence:
+                    self.add_include_sentence_to_role(role_name=name,
+                                                      sents=sentence.sentence,
+                                                      section=section_id)
 
     def add_section(self, section: Section):
         """
@@ -141,21 +178,7 @@ class Comic:
             sentence = sentence_obj
 
         self.sections[section_id].sentences.append(sentence)
-        # --- 向对应章节添加语句之后，还需要考虑该语句的讲话人，并且向对应的角色中添加对应的语句 ---
-        # 首先，如果当前语句的对话人不为None
-        # 否则考虑向include中添加
-        if sentence.speaker is not None and len(sentence.speaker) > 0:
-            self.add_dialog_sentence_to_role(role_name=sentence.speaker,
-                                             sents=sentence.sentence,
-                                             section=section_id)
-        else:
-            # 检查当前语句是否包含人名
-            # 如果包含，添加到对应人名的include中去
-            for name in self.roles_names:
-                if name in sentence.sentence:
-                    self.add_include_sentence_to_role(role_name=name,
-                                                      sents=sentence.sentence,
-                                                      section=section_id)
+        self._append_sentence_to_role(sentence=sentence, section_id=section_id)
 
     def add_sentences_to_section(self,
                                  sentences: Union[List[Sentence], List[Tuple[str, str]]],
@@ -247,6 +270,7 @@ class Comic:
         if self.first_role is None:
             self.first_role = Person()
             self.roles[0] = self.first_role
+            self.roles_names[0] = self.first_role.name
         self._add_info_to_role(self.first_role, **kwargs)
 
     def add_info_to_second_role(self, **kwargs):
@@ -254,6 +278,7 @@ class Comic:
         if self.second_role is None:
             self.second_role = Person()
             self.roles[1] = self.second_role
+            self.roles_names[1] = self.second_role.name
         self._add_info_to_role(self.second_role, **kwargs)
 
     def add_info_to_role(self, role_name: str, **kwargs):
@@ -412,5 +437,53 @@ class Comic:
                                            sents=sents,
                                            section=section,
                                            sents_dict=sents_dict)
+
+    def assign_section_sents_to_role(self):
+        """将当前section中的所有Sentence给到分配到各个角色中"""
+        if (self.sections is None) or (len(self.sections) <= 0):
+            return
+
+        for section in self.sections:
+            section_id = section.section_id
+            sentences = section.sentences
+            # 将每一个句子添加到对应任务的内容中
+            for sentence in sentences:
+                self._append_sentence_to_role(sentence=sentence,
+                                              section_id=section_id)
+
+    def get_sentences(self) -> Dict[int, List[str]]:
+        """获取当前漫画的所有语句"""
+        if (self.sections is None) or (len(self.sections) <= 0):
+            return {}
+
+        sentences = {}
+        for section in self.sections:
+            section_id = section.section_id
+            sents = []
+            for sent in section.sentences:
+                sents.append(sent.sentence)
+            sentences.update({section_id:sents})
+        return sentences
+
+    def get_first_role_dialog_sentences(self) -> Dict[int, List[str]]:
+        return self.first_role.dialog_sents
+
+    def get_first_role_include_sentences(self) -> Dict[int, List[str]]:
+        return self.first_role.include_sents
+
+    def get_second_role_dialog_sentences(self) -> Dict[int, List[str]]:
+        return self.second_role.dialog_sents
+
+    def get_second_role_include_sentences(self):
+        return self.second_role.include_sents
+
+    def get_dialog_sentences_by_role_name(self, role_name: str) -> Dict[int, List[str]]:
+        role = self.get_role_according_name(role_name)
+        return role.dialog_sents
+
+    def get_include_sentences_by_role_name(self, role_name: str) -> Dict[int, List[str]]:
+        role = self.get_role_according_name(role_name)
+        return role.include_sents
+
 
 

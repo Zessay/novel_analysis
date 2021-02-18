@@ -3,7 +3,7 @@
 # @Date: 2021-01-26
 import novela.constants as constants
 from novela.enum_labels import lazy_load_enums, LabelEnum, ENUM_NAMES
-from novela.utils import init_logger
+from novela.utils.common import init_logger
 
 
 if len(ENUM_NAMES) == 0:

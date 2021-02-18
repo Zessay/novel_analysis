@@ -4,6 +4,7 @@
 import os
 import re
 import docx
+import string
 import jieba
 import logging
 import wordcloud
@@ -132,6 +133,91 @@ def is_chinese_char(ch: str) -> bool:
         (cp >= 0x2F800 and cp <= 0x2FA1F)):  #
         return True
     return False
+
+
+def is_english_char(ch: str) -> bool:
+    """判断一个字符是否是英文字母"""
+    cp = ord(ch)
+    if (cp >= 0x41 and cp <= 0x5A) or (cp >= 0x61 and cp <= 0x7A):
+        return True
+    return False
+
+
+def strQ2B(ustring: str) -> str:
+    """
+    全角符号转对应的半角符号
+    :param ustring:
+    :return:
+    """
+    rstring = ""
+    for uchar in ustring:
+        inside_code = ord(uchar)
+        # 全角空格直接转换
+        if inside_code == 12288:
+            inside_code = 32
+        # 全角字符（除空格）根据对应的关系转换
+        elif (inside_code >= 65281 and inside_code <= 65374):
+            inside_code -= 65248
+        rstring += chr(inside_code)
+    return rstring
+
+
+def is_chinese_punc(ch: str) -> bool:
+    # 关于中文常用标点unicode编码 http://blog.chinaunix.net/uid-12348673-id-3335307.html
+    puncs = [0xb7, 0xd7, 0x2014, 0x2018, 0x2019, 0x201c,
+            0x201d, 0x2026, 0x3001, 0x3002, 0x300a, 0x300b,
+            0x300e, 0x300f, 0x3010, 0x3011, 0xff01, 0xff08,
+            0xff09, 0xff0c, 0xff1a, 0xff1b, 0xff1f]
+    if ord(ch) in puncs:
+        return True
+    return False
+
+
+def remove_space(ustring: str) -> str:
+    """
+    移除中文前后以及中间的空格，但是保留英文单词之间的空格
+    :param ustring: str型
+    :return:
+    """
+    ustring = ustring.strip()
+    rstring = ""
+    pre_ch = ""    # 保留空格位置前面第一个不为空格的字符
+
+    s_len = len(ustring)
+    for i in range(s_len):
+        ch = ustring[i]
+        if i == 0 or i == s_len - 1:
+            rstring += ch
+            pre_ch = ch
+        else:
+            # 如果当前字符不为空格
+            if ch.strip():
+                rstring += ch
+                pre_ch = ch
+            else:
+                # 如果空格字符的前面和后面都是英文，则保留；
+                # 否则去除该空格
+                if (is_english_char(pre_ch) or pre_ch in string.punctuation) and (is_english_char(ustring[i+1])):
+                    rstring += ch
+    return rstring
+
+
+def clean_text(ustring: str) -> str:
+    """
+    只保留字符串中的中文、英文字符、数字以及中英文常见标点
+    :param ustring: str型，表示原始字符串
+    :return:
+    """
+    # ustring = strQ2B(ustring)   # 这里将中文标点符号转化为英文标点，这里不需要
+    # 移除一些无用的空格
+    ustring = remove_space(ustring)
+    rstring = ""
+    for ch in ustring:
+        if (is_chinese_char(ch) or is_chinese_punc(ch)) or \
+                (is_english_char(ch) or (ch in string.punctuation)) \
+                or (ch in string.digits) or (ch.isspace()):
+            rstring += ch
+    return rstring
 
 
 def has_chinese(string: str) -> bool:

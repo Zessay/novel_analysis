@@ -63,6 +63,16 @@ class Outline(object):
         if "summarization" in kwargs:
             self._summarization = kwargs.get("summarization")
 
+    def get_sentences(self):
+        result = {}
+        if self.features:
+            result.update({"features": self.features})
+        if self.background:
+            result.update({"background":self.background})
+        if self.summarization:
+            result.update({"summarization":self.summarization})
+        return result
+
     @property
     def title(self):
         return self._title

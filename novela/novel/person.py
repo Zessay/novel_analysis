@@ -2,6 +2,7 @@
 # @Author: 莫冉
 # @Date: 2021-01-20
 from typing import List, Optional, Union
+from typing import Dict, Any
 
 
 class Person(object):
@@ -41,6 +42,7 @@ class Person(object):
         self._speciality = speciality
         self._character = character
         self._weakness = weakness
+        self.other_info: Dict[str, Any] = {}
         self.dialog_sents = {}     # 表示该人物所说的话，元素是键值对的形式，键表示该句话出现的章节(int)，值表示该人物该章节说话的内容(List[str])
         self.include_sents = {}    # 表示不属于该人物所说的话，但是包含该人物名字的语句，元素同上
 
