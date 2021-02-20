@@ -2,6 +2,7 @@
 # @Author: 莫冉
 # @Date: 2021-02-03
 from typing import Dict, List, Union, Tuple
+import jieba
 import numpy as np
 from gensim.models.keyedvectors import KeyedVectors
 from gensim.models.word2vec import Word2VecKeyedVectors
@@ -62,16 +63,29 @@ class WordVectorSimilarity:
             self.vocab_size = len(word2vec_dict)
             self.vector_size = vector_size
 
-    def _get_matrix_and_mask(self, word_list: List[str]):
+    def _get_matrix_and_mask(self, word_list: List[str], is_cut: bool = True):
         word_matrix, word_mask = [], []
         for word in word_list:
-            try:
-                vec = self.word2vec[word]
-                word_matrix.append(vec)
+            if is_cut:
+                w_list = [word]
+            else:
+                w_list = jieba.cut(word)
+            # 对于有的标签单词比较长的情况
+            # 需要在切分成一个一个的单词
+            vec = np.zeros(self.vector_size)
+            count = 0.0
+            for w in w_list:
+                try:
+                    vec += self.word2vec[w]
+                    count += 1.0
+                except:
+                    logger.error(f"单词{w}不存在于词向量词表中！")
+            # 如果有效单词数量大于0个
+            if count > 0.0:
+                word_matrix.append(vec / count)
                 word_mask.append(1.0)
-            except:
-                logger.error(f"单词{word}不存在于词向量词表中！")
-                word_matrix.append(np.zeros(self.vector_size))
+            else:
+                word_matrix.append(vec)
                 word_mask.append(0.0)
         word_matrix = np.asarray(word_matrix)
         word_mask = np.asarray(word_mask)
@@ -115,8 +129,8 @@ class WordVectorSimilarity:
 
         # 否则计算两个列表中每一个单词的相似度
         # 首先获取两个单词列表的词向量矩阵
-        word_list1_matrix, word_list1_mask = self._get_matrix_and_mask(word_list1)
-        word_list2_matrix, word_list2_mask = self._get_matrix_and_mask(word_list2)
+        word_list1_matrix, word_list1_mask = self._get_matrix_and_mask(word_list1, is_cut=False)
+        word_list2_matrix, word_list2_mask = self._get_matrix_and_mask(word_list2, is_cut=True)
 
         # 使用cosine_similarity计算相似度
         # 维度为 word_list1_len * word_list2_len

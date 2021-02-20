@@ -3,6 +3,7 @@
 # @Date: 2021-02-01
 from typing import Dict, List, Tuple
 import math
+import jieba
 import numpy as np
 
 from novela import logger
@@ -441,8 +442,14 @@ class HowNetSimilarity:
         for w1 in word_list1:
             sims = []
             mask = []
+            # 由于有的标签的中文单词很长
+            # 所以需要分割分别判断
+            w1_list = jieba.cut(w1)
             for w2 in word_list2:
-                sim = self.word_sim(w1, w2)
+                sim_list = []
+                for w in w1_list:
+                    sim_list.append(self.word_sim(w, w2))
+                sim = max(sim_list)
                 if sim == -1.0:
                     mask.append(0.0)
                 else:
