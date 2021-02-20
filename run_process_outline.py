@@ -363,6 +363,7 @@ def classify_story_info(comic: Comic,
                                                                       return_counts=2)
     label.story_info.story_routine.value = story_routine_values
 
+
 def get_role_words_and_sentences(role: Person, stopwords: Set[str]):
     """获取角色信息中的单词以及语句"""
     sent_words, sent_strings = [], []
@@ -386,6 +387,7 @@ def get_role_words_and_sentences(role: Person, stopwords: Set[str]):
         sent_strings.append("，".join(role.weakness))
 
     return sent_words, sent_strings
+
 
 
 def process_role_and_get_role_labels(role: Person,
@@ -490,6 +492,7 @@ def process_role_and_get_role_labels(role: Person,
     role_info.role_contrast.value = role_contrast_value
 
     return sent_words, sent_strings
+
 
 def classify_role_info(comic: Comic,
                        label: Label,
