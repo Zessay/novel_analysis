@@ -8,3 +8,5 @@ gensim=3.8.3
 scikit-learn=0.24.1
 pandas=1.2.1
 openpyxl=3.0.6
+pyhanlp=0.1.67
+ngender=0.1.1
