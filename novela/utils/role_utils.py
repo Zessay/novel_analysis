@@ -138,7 +138,10 @@ def judge_gender(name: str,
         return "不确定"
 
     result = ngender.guess(name)[0]
-    return result
+    if result == "male":
+        return "男"
+    else:
+        return "女"
 
 
 
