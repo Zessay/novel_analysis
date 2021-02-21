@@ -3,15 +3,21 @@
 # @Date: 2021-02-21
 import jieba
 import jieba.posseg as pseg
-from typing import List, Dict
+from typing import List
 from collections import OrderedDict
-from pyhanlp import HanLP
 import ngender
 
 import novela.constants as constants
+from novela._utils.typehint import OrderedDictType
+from novela._utils.imports import LazyModule
+
+try:
+    from pyhanlp import HanLP
+except:
+    HanLP = LazyModule("HanLP", global_dict=globals())
 
 
-def extract_names_hanlp(sentences: List[str]) -> Dict[str, List[int, str]]:
+def extract_names_hanlp(sentences: List[str]) -> OrderedDictType[str, List[int, str]]:
     """
     使用HaNLP中的实体识别模型，提取人名
     :param sentences: List[str]，表示所有的输入语句
@@ -52,7 +58,7 @@ def extract_names_hanlp(sentences: List[str]) -> Dict[str, List[int, str]]:
     return names
 
 
-def extract_names_jieba(sentences: List[str]) -> Dict[str, List[int, str]]:
+def extract_names_jieba(sentences: List[str]) -> OrderedDictType[str, List[int, str]]:
     """
     使用jieba中的paddle模式获取人名
     :param sentences:
