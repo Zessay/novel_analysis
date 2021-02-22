@@ -45,17 +45,18 @@ def extract_names_hanlp(sentences: List[str]) -> OrderedDictType[str, List[int, 
         sentence_name_nums.append(name_count)
 
     # 判断姓名的性别
+    result = OrderedDict()
     for name, value in names.items():
         gender = judge_gender(name=name,
                               occur_indexes=value[1],
                               sentences=sentences,
                               sentence_name_nums=sentence_name_nums)
-        names[name][1] = gender
+        result.update({name: [value[0], gender]})
 
     # 键名就是人名
     # 值的第一个元素为名字出现的次数
     # 值得第二个元素为名字的性别
-    return names
+    return result
 
 
 def extract_names_jieba(sentences: List[str]) -> OrderedDictType[str, List[int, str]]:
@@ -83,17 +84,18 @@ def extract_names_jieba(sentences: List[str]) -> OrderedDictType[str, List[int, 
         sentence_name_nums.append(name_count)
 
     # 判断姓名的性别
+    result = OrderedDict()
     for name, value in names.items():
         gender = judge_gender(name=name,
                               occur_indexes=value[1],
                               sentences=sentences,
                               sentence_name_nums=sentence_name_nums)
-        names[name][1] = gender
+        result.update({name: [value[0], gender]})
 
     # 键名就是人名
     # 值的第一个元素为名字出现的次数
     # 值得第二个元素为名字的性别
-    return names
+    return result
 
 
 def judge_gender(name: str,
