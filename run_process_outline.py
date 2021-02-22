@@ -633,14 +633,6 @@ if __name__ == '__main__':
     target_file = os.path.join(args.to_dir, args.to_file)
 
 
-    # 将文件中的数据转化为Dict型
-    logger.info(f"读取小说大纲文件{source_file}，并转化为Comic对象")
-    document_dict = read_document_to_dict(file=source_file)
-    novel_name = document_dict["小说名"]                     # 小说的名称
-    # 转化为Comic对象
-    comic = Comic()
-    parse_document(document_dict, comic=comic)
-
     # 加载停用词
     stopwords = load_stopwords(file=constants.STOPWORDS_FILE)
 
@@ -657,6 +649,16 @@ if __name__ == '__main__':
     logger.info("构造语句相似度计算对象")
     sim_sent2vector = SentVectorSimilarity(stopwords=stopwords,
                                            word2vec=sim_word2vector.word2vec)
+
+
+
+    # 将文件中的数据转化为Dict型
+    logger.info(f"读取小说大纲文件{source_file}，并转化为Comic对象")
+    document_dict = read_document_to_dict(file=source_file)
+    novel_name = document_dict["小说名"]                     # 小说的名称
+    # 转化为Comic对象
+    comic = Comic()
+    parse_document(document_dict, comic=comic)
 
     # 创建空的Label对象
     label = Label()
