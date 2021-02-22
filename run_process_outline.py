@@ -646,7 +646,7 @@ if __name__ == '__main__':
 
     # 创建相似度计算的对象
     # --- 单词相似度部分 ---
-    logger.info("构造单词相似度计算对象")
+    logger.info("构造单词语义相似度计算对象")
     sim_word2vector = WordVectorSimilarity(w2v_file=args.w2v_file)
     logger.info("构造词林相似度对象")
     sim_cilin = CilinSimilarity(cilin_file=constants.CILIN_FILE)
