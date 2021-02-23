@@ -32,7 +32,7 @@ def get_mean_sim(sim_matrix: np.ndarray, masks: np.ndarray):
     """得到每一个标签对于单词表的平均相似度"""
     sim_sum = np.sum(sim_matrix, axis=1)    # 得到每一个标签对于词表中所有单词相似度的和
     valid_sum = np.sum(masks, axis=1)       # 得到每一个标签对应的有效词表数
-    sim_mean = sim_sum / valid_sum
+    sim_mean = sim_sum / (valid_sum + 1e-5)
     return sim_mean
 
 
@@ -55,34 +55,36 @@ def similarity_between_base_label_and_sents(sent_words: List[str],
     base_enum_names = base_label.enum_names
     # ---- 首先获取当前base_label标签中所有标签对应的单词名称 -------
     base_label_names = base_label.display_names
+    if len(base_enum_names) <= 0:
+        return None, None
     # 所有的相似度都已经归一化到0-1之间了
     # sim 的维度为 [label_num, words_num]
     # mask的维度为 [label_num, words_num]，1表示是有效值，0表示无效值
     # 计算word2vector相似度
     w2v_sim, w2v_mask = sim_word2vector.wordlist_sim(base_label_names,
                                                      sent_words)
-    # 计算cilin相似度
-    cilin_sim, cilin_mask = sim_cilin.wordlist_sim(base_label_names,
-                                                   sent_words)
+    # # 计算cilin相似度
+    # cilin_sim, cilin_mask = sim_cilin.wordlist_sim(base_label_names,
+    #                                                sent_words)
     # 计算hownet相似度
-    hownet_sim, hownet_mask = sim_hownet.wordlist_sim(base_label_names,
-                                                      sent_words)
+    # hownet_sim, hownet_mask = sim_hownet.wordlist_sim(base_label_names,
+    #                                                   sent_words)
     # 得到每一种单词相似度的均值和最大值
     w2v_sim_mean = get_mean_sim(w2v_sim, w2v_mask)
     w2v_sim_max = get_max_sim(w2v_sim, w2v_mask)
-    cilin_sim_mean = get_mean_sim(cilin_sim, cilin_mask)
-    cilin_sim_max = get_max_sim(cilin_sim, cilin_mask)
-    hownet_sim_mean = get_mean_sim(hownet_sim, hownet_mask)
-    hownet_sim_max = get_max_sim(hownet_sim, hownet_mask)
+    # cilin_sim_mean = get_mean_sim(cilin_sim, cilin_mask)
+    # cilin_sim_max = get_max_sim(cilin_sim, cilin_mask)
+    # hownet_sim_mean = get_mean_sim(hownet_sim, hownet_mask)
+    # hownet_sim_max = get_max_sim(hownet_sim, hownet_mask)
 
-    word_sim_mean = (w2v_sim_mean + cilin_sim_mean + hownet_sim_mean) / 3
-    word_sim_max = (w2v_sim_max + cilin_sim_max + hownet_sim_max) / 3
+    word_sim_mean = w2v_sim_mean
+    word_sim_max = w2v_sim_max
     word_sim = (word_sim_mean + word_sim_max) / 2
 
 
     # ---- 接着考虑该标签各个类别是否存在描述，计算描述和各个句子之间的相似度 ---------
     base_label_descriptions = base_label.descriptions
-    if base_label_descriptions is not None and len(base_label_descriptions) == len(base_label_names):
+    if base_label_descriptions and len(base_label_descriptions) == len(base_label_names):
         # 句子的相似度也已经归一化到0-1之间，形状为 [label_num, sentence_num]
         s2v_sim, s2v_mask = sim_sent2vector.sentlist_sim(base_label_descriptions,
                                                          sent_strings)
@@ -109,7 +111,7 @@ def similarity_between_base_label_and_sents(sent_words: List[str],
         max_indexes = indexes[:return_counts]
         values = np.array(base_label_names)[max_indexes]
         enum_names = np.array(base_enum_names)[max_indexes]
-        return enum_names, values
+        return enum_names.tolist(), values.tolist()
     else:
         raise ValueError(f"`return_count` must be greater equal than 1, but get `{return_counts}`.")
 
@@ -154,7 +156,7 @@ def _adjust_cell_height(worksheet: Worksheet,
 
 
 def _adjust_cell_width(worksheet: Worksheet,
-                       max_width: int = 100,
+                       max_width: int = 150,
                        add_width: int = 10,
                        active_column: Optional[int] = None):
     """
@@ -180,7 +182,7 @@ def _adjust_cell_width(worksheet: Worksheet,
 
 
 def _adjust_cell_width_and_height(worksheet: Worksheet,
-                                  max_width: int = 100,
+                                  max_width: int = 150,
                                   add_width: int = 10,
                                   fixed_height: int = 20,
                                   active_row: Optional[int] = None,
@@ -209,7 +211,7 @@ def _adjust_cell_width_and_height(worksheet: Worksheet,
 def _register_header_style(workbook: Workbook):
     """注册header的风格"""
     # 字体
-    header_font = Font(name="微软雅黑", size=12, b=True)
+    header_font = Font(name="微软雅黑", size=11, b=True)
     # 边框
     line_m = Side(style="medium", color="000000")  # 粗边框
     border_m = Border(top=line_m, bottom=line_m, left=line_m, right=line_m)
@@ -226,7 +228,7 @@ def _register_header_style(workbook: Workbook):
 def _register_content_style(workbook: Workbook):
     """注册content的风格"""
     # 字体
-    content_font = Font(name="微软雅黑", size=11)
+    content_font = Font(name="微软雅黑", size=10)
     # 边框
     line_t = Side(style="thin", color="000000")  # 细边框
     border_t = Border(top=line_t, bottom=line_t, left=line_t, right=line_t)
@@ -332,7 +334,7 @@ def _add_new_record(worksheet: Worksheet,
     # 调节行高和列宽
     if add_new_column_flag:
         _adjust_cell_width_and_height(worksheet,
-                                      max_width=100,
+                                      max_width=150,
                                       add_width=10,
                                       fixed_height=20)
         _set_cell_styles(worksheet)
@@ -372,7 +374,7 @@ def _new_table(worksheet: Worksheet,
 
     # 调节行高和列宽
     _adjust_cell_width_and_height(worksheet,
-                                  max_width=100,
+                                  max_width=150,
                                   add_width=10,
                                   fixed_height=20)
     # 设置风格

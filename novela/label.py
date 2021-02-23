@@ -33,15 +33,15 @@ class BaseLabel:
 
         self._value = None   # 表示标签值
 
-        if self._enum_class is not None:
-            self._init_enum_attrs()
-
-    def _init_enum_attrs(self):
         self.enum_names = []
         self.enum_values = []
         self.display_names = []
         self.descriptions = []
-        for item in self.enum_class:
+        if self._enum_class is not None:
+            self._init_enum_attrs()
+
+    def _init_enum_attrs(self):
+        for item in self._enum_class:
             self.enum_names.append(item.name)   # enum_names对应的是枚举类类别的英文名
             self.enum_values.append(item.value)
             if hasattr(item, "display_name"):
@@ -55,10 +55,16 @@ class BaseLabel:
 
     @value.setter
     def value(self, v: Union[str, List[str]]):
-        if v in self.display_names:
+        if (v is not None) and (len(self.display_names) > 0):
+            if isinstance(v, str):
+                v_list = [v]
+            else:
+                v_list = v
+            for v_item in v_list:
+                if v_item not in self.display_names:
+                    raise ValueError(f"`{v}`不存在于当前枚举类的标签中`{self.display_names}`!!")
             self._value = v
-        else:
-            raise ValueError(f"`{v}`不存在于当前枚举类的标签中`{self.display_names}`!!")
+
 
     @property
     def enum_class(self):
@@ -69,9 +75,10 @@ class BaseLabel:
         if isinstance(ec, LabelEnum):
             self._enum_class = ec
         else:
-            self._enum_class = LabelEnum.load_class(ec)
+            self._enum_class = LabelEnum.load_class(ec.title())
         # 定义完当前的枚举类之后，需要获取其中的一些参数
-        self._init_enum_attrs()
+        if self._enum_class is not None:
+            self._init_enum_attrs()
 
     def __iter__(self):
         yield from self.enum_class
@@ -88,7 +95,11 @@ class BaseLabel:
                 return item
 
     def to_json(self):
-        return {self.name: self._value}
+        if self._value is not None and isinstance(self._value, list):
+            value = "，".join(self._value)
+        else:
+            value = self._value
+        return {self.name: value}
 
 
 @dataclass
@@ -110,7 +121,9 @@ class InfoInterface:
         custom_attrs = [attr for attr in dir(self)
                         if ((not callable(getattr(self, attr))) and (not attr.startswith("__")))]
         for attr in custom_attrs:
-            result.update(getattr(self, attr).to_json())
+            attr_value = getattr(self, attr)
+            if isinstance(attr_value, StringLabel) or isinstance(attr_value, BaseLabel):
+                result.update(attr_value.to_json())
         return result
 
 
@@ -220,3 +233,8 @@ class Label:
         return result
 
 
+if __name__ == '__main__':
+    baselabel = BaseLabel(name="第二层")
+    baselabel.enum_class = "Test"
+    print(baselabel.enum_class)
+    print(baselabel.enum_names)

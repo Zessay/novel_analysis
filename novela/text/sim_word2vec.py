@@ -66,6 +66,8 @@ class WordVectorSimilarity:
     def _get_matrix_and_mask(self, word_list: List[str], is_cut: bool = True):
         word_matrix, word_mask = [], []
         for word in word_list:
+            if word.endswith("类"):
+                word = word[:-1]
             if is_cut:
                 w_list = [word]
             else:
@@ -79,7 +81,8 @@ class WordVectorSimilarity:
                     vec += self.word2vec[w]
                     count += 1.0
                 except:
-                    logger.error(f"单词{w}不存在于词向量词表中！")
+                    # logger.error(f"单词`{w}`不存在于词向量词表中！")
+                    pass
             # 如果有效单词数量大于0个
             if count > 0.0:
                 word_matrix.append(vec / count)
@@ -139,9 +142,11 @@ class WordVectorSimilarity:
         # 余弦相似度范围在[-1, 1]之间，这里归一化到[0, 1]之间
         similarities = (similarities + 1) / 2
 
-        w1_expand = np.expand_dims(word_list1_mask, axis=1)
-        w2_expand = np.expand_dims(word_list2_mask, axis=0)
-        masks = (w1_expand & w2_expand)
+        w1_expand = np.expand_dims(word_list1_mask, axis=1).astype(np.int8)
+        w2_expand = np.expand_dims(word_list2_mask, axis=0).astype(np.int8)
+
+
+        masks = (w1_expand & w2_expand).astype(np.float16)
 
         # 分别乘以word_list1和word_list2的mask向量
         similarities = similarities * masks

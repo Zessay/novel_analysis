@@ -7,8 +7,7 @@ import re
 import time
 import argparse
 import numpy as np
-from functools import lru_cache
-from typing import Dict, Any, Set
+from typing import Dict, Any, Set, Optional, List
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from novela import logger
@@ -193,7 +192,6 @@ def classify_base_info(comic: Comic, label: Label):
         label.base_info.comic_script_writer = comic.outline.comic_author
 
 
-@lru_cache(maxsize=1)
 def get_story_words_and_sentences(comic: Comic, stopwords: Set[str]):
     """
     获取故事中的有效单词和语句
@@ -216,7 +214,6 @@ def get_story_words_and_sentences(comic: Comic, stopwords: Set[str]):
 
     sent_strings = outline_sents + storyline_sents
     sentences = [" ".join(cut_and_remove_stopwords(sent, stopwords)) for sent in sent_strings]
-
     # 定义并训练TFIDF模型
     # 设置token_pattern防止忽略长度为1的单词
     logger.info("训练Tfidf模型")
@@ -249,12 +246,15 @@ def classify_story_info(comic: Comic,
                         sim_word2vector: WordVectorSimilarity,
                         sim_hownet: HowNetSimilarity,
                         sim_cilin: CilinSimilarity,
-                        sim_sent2vector: SentVectorSimilarity):
+                        sim_sent2vector: SentVectorSimilarity,
+                        sent_strings: Optional[List[str]] = None,
+                        sent_words: Optional[List[str]] = None):
     """
     对故事信息中的一些标签进行分类
     """
     # 首先获取故事信息中所有有效的单词和语句
-    sent_strings, sent_words, *_ = get_story_words_and_sentences(comic, stopwords)
+    if sent_words is None or sent_strings is None:
+        sent_strings, sent_words, *_ = get_story_words_and_sentences(comic, stopwords)
 
     # 计算单词和标签之间的相似度
     # --- 主要情节第一层和次要情节第一层 ---
@@ -266,6 +266,7 @@ def classify_story_info(comic: Comic,
                                                                                      sim_cilin=sim_cilin,
                                                                                      sim_sent2vector=sim_sent2vector,
                                                                                      return_counts=2)
+
     # 主要情节和次要情节标签
     label.story_info.major_storyplot_first.value = storyplot_values[0]
     label.story_info.minor_storyplot_first.value = storyplot_values[1]
@@ -398,9 +399,12 @@ def process_role_and_get_role_labels(role: Person,
                                      sim_word2vector: WordVectorSimilarity,
                                      sim_hownet: HowNetSimilarity,
                                      sim_cilin: CilinSimilarity,
-                                     sim_sent2vector: SentVectorSimilarity):
+                                     sim_sent2vector: SentVectorSimilarity,
+                                     sent_strings: Optional[List[str]] = None,
+                                     sent_words: Optional[List[str]] = None):
     """处理单个角色并获取该角色的标签"""
-    sent_words, sent_strings = get_role_words_and_sentences(role, stopwords=stopwords)
+    if sent_words is None or sent_strings is None:
+        sent_words, sent_strings = get_role_words_and_sentences(role, stopwords=stopwords)
 
     # --- 角色物种 ---
     _, role_type_value = similarity_between_base_label_and_sents(sent_words,
@@ -502,7 +506,9 @@ def classify_role_info(comic: Comic,
                        sim_word2vector: WordVectorSimilarity,
                        sim_hownet: HowNetSimilarity,
                        sim_cilin: CilinSimilarity,
-                       sim_sent2vector: SentVectorSimilarity):
+                       sim_sent2vector: SentVectorSimilarity,
+                       sent_strings: Optional[List[str]] = None,
+                       sent_words: Optional[List[str]] = None):
     """对角色信息中的标签进行分类（主要是第一主角和第二主角）"""
     # 首先对第一主角的标签进行分类
     first_words, first_strings = process_role_and_get_role_labels(role=comic.first_role,
@@ -511,7 +517,9 @@ def classify_role_info(comic: Comic,
                                                                   sim_word2vector=sim_word2vector,
                                                                   sim_hownet=sim_hownet,
                                                                   sim_cilin=sim_cilin,
-                                                                  sim_sent2vector=sim_sent2vector)
+                                                                  sim_sent2vector=sim_sent2vector,
+                                                                  sent_words=sent_words,
+                                                                  sent_strings=sent_strings)
 
     # 接着对第二主角的标签进行分类
     second_words, second_strings = process_role_and_get_role_labels(role=comic.second_role,
@@ -520,7 +528,9 @@ def classify_role_info(comic: Comic,
                                                                     sim_word2vector=sim_word2vector,
                                                                     sim_hownet=sim_hownet,
                                                                     sim_cilin=sim_cilin,
-                                                                    sim_sent2vector=sim_sent2vector)
+                                                                    sim_sent2vector=sim_sent2vector,
+                                                                    sent_words=sent_words,
+                                                                    sent_strings=sent_strings)
 
     # 合并两个角色的单词
     # 得到角色之间关系的标签类别
@@ -575,10 +585,13 @@ def classify_other_info(comic: Comic,
                         sim_word2vector: WordVectorSimilarity,
                         sim_hownet: HowNetSimilarity,
                         sim_cilin: CilinSimilarity,
-                        sim_sent2vector: SentVectorSimilarity):
+                        sim_sent2vector: SentVectorSimilarity,
+                        sent_strings: Optional[List[str]] = None,
+                        sent_words: Optional[List[str]] = None):
     """对其他信息中的标签进行分类"""
     # 首先获取文章中的所有有效单词和语句
-    sent_strings, sent_words, *_ = get_story_words_and_sentences(comic, stopwords)
+    if sent_words is None or sent_strings is None:
+        sent_strings, sent_words, *_ = get_story_words_and_sentences(comic, stopwords)
 
     # --- 热门话题 ---
     _, hot_topic_value = similarity_between_base_label_and_sents(sent_words=sent_words,
@@ -662,6 +675,9 @@ if __name__ == '__main__':
     comic = Comic()
     parse_document(document_dict, comic=comic)
 
+    # 获取整个story中的strings和words
+    story_sent_strings, story_sent_words, *_ = get_story_words_and_sentences(comic, stopwords)
+
     # 创建空的Label对象
     label = Label()
 
@@ -675,8 +691,10 @@ if __name__ == '__main__':
                         sim_word2vector=sim_word2vector,
                         sim_cilin=sim_cilin,
                         sim_hownet=sim_hownet,
-                        sim_sent2vector=sim_sent2vector)
-    logger.info(f"得到故事信息的标签，共计用时 {time.time()-start_time} s.")
+                        sim_sent2vector=sim_sent2vector,
+                        sent_words=story_sent_words,
+                        sent_strings=story_sent_strings)
+    logger.info(f"得到故事信息的标签，共计用时 {(time.time()-start_time) * 1000} ms.")
 
     start_time = time.time()
     classify_role_info(comic=comic, label=label,
@@ -685,7 +703,7 @@ if __name__ == '__main__':
                        sim_cilin=sim_cilin,
                        sim_hownet=sim_hownet,
                        sim_sent2vector=sim_sent2vector)
-    logger.info(f"得到角色信息的标签，共计用时 {time.time()-start_time} s.")
+    logger.info(f"得到角色信息的标签，共计用时 {(time.time()-start_time) * 1000} s.")
 
     start_time = time.time()
     classify_other_info(comic=comic, label=label,
@@ -693,8 +711,10 @@ if __name__ == '__main__':
                         sim_word2vector=sim_word2vector,
                         sim_cilin=sim_cilin,
                         sim_hownet=sim_hownet,
-                        sim_sent2vector=sim_sent2vector)
-    logger.info(f"得到其他信息的标签，共计用时 {time.time()-start_time} s.")
+                        sim_sent2vector=sim_sent2vector,
+                        sent_words=story_sent_words,
+                        sent_strings=story_sent_strings)
+    logger.info(f"得到其他信息的标签，共计用时 {(time.time()-start_time) * 1000} s.")
 
 
     logger.info(f"保存文件到{target_file}")

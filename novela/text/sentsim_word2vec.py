@@ -46,7 +46,8 @@ class SentVectorSimilarity(WordVectorSimilarity):
                     pass
         # 对词向量的和进行平均
         # 得到句向量
-        sent_vector /= valid
+        if valid:
+            sent_vector /= valid
         return sent_vector, valid
 
     def _get_matrix_and_mask(self, sent_list: Union[List[str], List[List[str]]]):
@@ -95,9 +96,9 @@ class SentVectorSimilarity(WordVectorSimilarity):
         # 余弦相似度的范围在[-1, 1]之间，这里归一化到[0, 1]之间
         similarities = (similarities + 1) / 2
 
-        s1_expand = np.expand_dims(sent_list1_mask, axis=1)
-        s2_expand = np.expand_dims(sent_list2_mask, axis=0)
-        masks = (s1_expand & s2_expand)
+        s1_expand = np.expand_dims(sent_list1_mask, axis=1).astype(np.int8)
+        s2_expand = np.expand_dims(sent_list2_mask, axis=0).astype(np.int8)
+        masks = (s1_expand & s2_expand).astype(np.float16)
 
         similarities = similarities * masks
         return similarities, masks

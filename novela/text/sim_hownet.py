@@ -5,6 +5,7 @@ from typing import Dict, List, Tuple
 import math
 import jieba
 import numpy as np
+from functools import lru_cache
 
 from novela import logger
 
@@ -236,6 +237,7 @@ class HowNetSimilarity:
             return self.sememeindex_zh[word]
         return None
 
+    @lru_cache(maxsize=64)
     def getGlossaryByWord(self, word: str):
         """根据单词获取词汇表中的项"""
         if word in self.vocab:
@@ -442,14 +444,19 @@ class HowNetSimilarity:
         for w1 in word_list1:
             sims = []
             mask = []
+            if w1.endswith("类"):
+                w1 = w1[:-1]
             # 由于有的标签的中文单词很长
             # 所以需要分割分别判断
-            w1_list = jieba.cut(w1)
+            w1_list = jieba.lcut(w1)
             for w2 in word_list2:
                 sim_list = []
                 for w in w1_list:
                     sim_list.append(self.word_sim(w, w2))
-                sim = max(sim_list)
+                if len(sim_list) == 1:
+                    sim = sim_list[0]
+                else:
+                    sim = max(sim_list)
                 if sim == -1.0:
                     mask.append(0.0)
                 else:
