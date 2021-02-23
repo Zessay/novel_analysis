@@ -219,9 +219,11 @@ def get_story_words_and_sentences(comic: Comic, stopwords: Set[str]):
 
     # 定义并训练TFIDF模型
     # 设置token_pattern防止忽略长度为1的单词
+    logger.info("训练Tfidf模型")
     tfidf_model = TfidfVectorizer(token_pattern=r"(?u)\b\w+\b")
     tfidf_model.fit(sentences)
-
+    logger.info("Tfidf模型训练完成")
+    
     # 将所有句子拼接成一个长句子
     all_sentence = ""
     for sent in sentences:
