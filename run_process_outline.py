@@ -634,6 +634,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+
+    start_time = time.time()
     # 首先判断文件夹和文件是否存在
     if not os.path.isdir(args.source_dir):
         raise RuntimeError(f"The parameter `source_dir`: {args.source_dir} is not a valid path.")
@@ -665,6 +667,7 @@ if __name__ == '__main__':
     sim_sent2vector = SentVectorSimilarity(stopwords=stopwords,
                                            word2vec=sim_word2vector.word2vec)
 
+    logger.info(f"初始化共计用时 {time.time() - start_time} s.")
 
 
     # 将文件中的数据转化为Dict型
