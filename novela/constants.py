@@ -28,6 +28,7 @@ CILIN_FILE = os.path.join(RESOURCE_PATH, "new_cilin.txt")
 GLOSSARY_FILE = os.path.join(RESOURCE_PATH, "glossary.txt")
 WHOLE_DAT = os.path.join(RESOURCE_PATH, "WHOLE.DAT")
 STOPWORDS_FILE = os.path.join(RESOURCE_PATH, "stopwords.txt")
+FONT_FILE = os.path.join(RESOURCE_PATH, "FZYTK.TTF")
 
 # --------------- 日志文件的配置 -------------------
 

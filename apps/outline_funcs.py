@@ -1,6 +1,6 @@
 # coding=utf-8
 # @Author: 莫冉
-# @Date: 2021-02-08
+# @Date: 2021-02-26
 import os
 import docx
 import re
@@ -28,7 +28,7 @@ def read_document_to_dict(file: str) -> Dict[str, Any]:
         novel_name = None
     else:
         novel_name = group[0]
-    doc_dict = {"小说名": novel_name}     # 用来存储大纲中的内容
+    doc_dict = {"小说名": novel_name}  # 用来存储大纲中的内容
     document = docx.Document(file)
 
     # 由于大纲是按照表格的形式存储的
@@ -40,14 +40,14 @@ def read_document_to_dict(file: str) -> Dict[str, Any]:
     for i, table in enumerate(document.tables):
         if i < paras_len - 1:
             tables.append(table)
-        elif i  == paras_len - 1:
+        elif i == paras_len - 1:
             tables.append(document.tables[i:])
             break
         else:
             pass
     # 对于每一个表格以及对应的标题
     for para, table in zip(paras, tables):
-        para_title = para.text.strip()   # 表示表格的标题
+        para_title = para.text.strip()  # 表示表格的标题
         # 表示当前属于一个个出场人物的表格
         if isinstance(table, list):
             # 如果table是list
@@ -66,9 +66,9 @@ def read_document_to_dict(file: str) -> Dict[str, Any]:
                             if text:
                                 key, value = text.split("：")
                                 if key:
-                                    role_dict.update({key:value})
+                                    role_dict.update({key: value})
                 roles_list.append(role_dict)
-            doc_dict.update({para_title:roles_list})
+            doc_dict.update({para_title: roles_list})
         else:
             table_dict = {}  # 用来存储表格的内容
             row_title = ""
@@ -95,7 +95,7 @@ def read_document_to_dict(file: str) -> Dict[str, Any]:
                                         if len(value) == 1:
                                             value = value[0]
                                         if key:
-                                            table_dict.update({key:value})
+                                            table_dict.update({key: value})
                         else:
                             # 对于以分行符分段的
                             origin_text = cell.text.strip()
@@ -107,7 +107,7 @@ def read_document_to_dict(file: str) -> Dict[str, Any]:
                                 else:
                                     text = text_list
                                 if row_title:
-                                    table_dict.update({row_title:text})
+                                    table_dict.update({row_title: text})
             doc_dict[para_title] = table_dict
 
     return doc_dict
@@ -163,7 +163,7 @@ def parse_document(doc_dict: Dict[str, Any], comic: Comic):
                     elif "缺点" in k:
                         role.weakness = v.split("，")
                     else:
-                        role.other_info.update({k:v})
+                        role.other_info.update({k: v})
                 if i == 0:
                     comic.first_role = role
                 elif i == 1:
@@ -220,15 +220,15 @@ def get_story_words_and_sentences(comic: Comic, stopwords: Set[str]):
     tfidf_model = TfidfVectorizer(token_pattern=r"(?u)\b\w+\b")
     tfidf_model.fit(sentences)
     logger.info("Tfidf模型训练完成")
-    
+
     # 将所有句子拼接成一个长句子
     all_sentence = ""
     for sent in sentences:
         all_sentence += " " + sent
     all_sentence = all_sentence.strip()
     # 将句子中的所有单词转化为TFIDF值
-    sparse_value = tfidf_model.transform([all_sentence])   # 结果是一个稀疏矩阵
-    vocabulary = tfidf_model.get_feature_names()           # 获取所有单词的词表
+    sparse_value = tfidf_model.transform([all_sentence])  # 结果是一个稀疏矩阵
+    vocabulary = tfidf_model.get_feature_names()  # 获取所有单词的词表
 
     # 获取所有有效的单词以及对应的Tfidf值
     indexes = np.nonzero(sparse_value)[1]
@@ -390,7 +390,6 @@ def get_role_words_and_sentences(role: Person, stopwords: Set[str]):
         sent_strings.append("，".join(role.weakness))
 
     return sent_words, sent_strings
-
 
 
 def process_role_and_get_role_labels(role: Person,
@@ -612,117 +611,3 @@ def classify_other_info(comic: Comic,
                                                                     sim_cilin=sim_cilin,
                                                                     sim_sent2vector=sim_sent2vector)
     label.others.other_points.value = other_points_value
-
-
-
-
-if __name__ == '__main__':
-    # doc_dict = read_document_to_dict(os.path.join(data_path, file))
-    # print(doc_dict)
-    # # read_test(os.path.join(data_path, file))
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--source_dir", default="/home/data/corpus", type=str, required=True,
-                        help="The directory name of the base path.")
-    parser.add_argument("--file_name", default="《极品战兵》大纲.docx", type=str, required=True,
-                        help="The file name of the outline.")
-    parser.add_argument("--w2v_file", default="/home/models/wordvector/sgns.literature.word.bz2", type=str,
-                        help="The path of word2vector file.")
-    parser.add_argument("--to_dir", default="/home/results/novel", type=str, required=True,
-                        help="The target directory of the result file.")
-    parser.add_argument("--to_file", default="novel_label.xlsx", type=str, required=True,
-                        help="The target file name.")
-
-    args = parser.parse_args()
-
-
-    start_time = time.time()
-    # 首先判断文件夹和文件是否存在
-    if not os.path.isdir(args.source_dir):
-        raise RuntimeError(f"The parameter `source_dir`: {args.source_dir} is not a valid path.")
-
-    source_file = os.path.join(args.source_dir, args.file_name)
-    if not os.path.isfile(source_file):
-        raise ValueError(f"There is no file named `source_file`: {source_file}.")
-
-    # 判断目标文件目录是否存在
-    if not os.path.isdir(args.to_dir):
-        os.makedirs(args.to_dir)
-    target_file = os.path.join(args.to_dir, args.to_file)
-
-
-    # 加载停用词
-    stopwords = load_stopwords(file=constants.STOPWORDS_FILE)
-
-    # 创建相似度计算的对象
-    # --- 单词相似度部分 ---
-    logger.info("构造单词语义相似度计算对象")
-    sim_word2vector = WordVectorSimilarity(w2v_file=args.w2v_file)
-    logger.info("构造词林相似度对象")
-    sim_cilin = CilinSimilarity(cilin_file=constants.CILIN_FILE)
-    logger.info("构造HowNet相似度计算对象")
-    sim_hownet = HowNetSimilarity(glossary_file=constants.GLOSSARY_FILE,
-                                  sememe_file=constants.WHOLE_DAT)
-    # --- 语句相似度部分 ---
-    logger.info("构造语句相似度计算对象")
-    sim_sent2vector = SentVectorSimilarity(stopwords=stopwords,
-                                           word2vec=sim_word2vector.word2vec)
-
-    logger.info(f"初始化共计用时 {time.time() - start_time} s.")
-
-
-    # 将文件中的数据转化为Dict型
-    logger.info(f"读取小说大纲文件{source_file}，并转化为Comic对象")
-    document_dict = read_document_to_dict(file=source_file)
-    novel_name = document_dict["小说名"]                     # 小说的名称
-    # 转化为Comic对象
-    comic = Comic()
-    parse_document(document_dict, comic=comic)
-
-    # 获取整个story中的strings和words
-    story_sent_strings, story_sent_words, *_ = get_story_words_and_sentences(comic, stopwords)
-
-    # 创建空的Label对象
-    label = Label()
-
-    start_time = time.time()
-    classify_base_info(comic=comic, label=label)
-    logger.info(f"得到基本信息的标签，共计用时 {(time.time()-start_time) * 1000} ms.")
-
-    start_time = time.time()
-    classify_story_info(comic=comic, label=label,
-                        stopwords=stopwords,
-                        sim_word2vector=sim_word2vector,
-                        sim_cilin=sim_cilin,
-                        sim_hownet=sim_hownet,
-                        sim_sent2vector=sim_sent2vector,
-                        sent_words=story_sent_words,
-                        sent_strings=story_sent_strings)
-    logger.info(f"得到故事信息的标签，共计用时 {(time.time()-start_time) * 1000} ms.")
-
-    start_time = time.time()
-    classify_role_info(comic=comic, label=label,
-                       stopwords=stopwords,
-                       sim_word2vector=sim_word2vector,
-                       sim_cilin=sim_cilin,
-                       sim_hownet=sim_hownet,
-                       sim_sent2vector=sim_sent2vector)
-    logger.info(f"得到角色信息的标签，共计用时 {(time.time()-start_time) * 1000} ms.")
-
-    start_time = time.time()
-    classify_other_info(comic=comic, label=label,
-                        stopwords=stopwords,
-                        sim_word2vector=sim_word2vector,
-                        sim_cilin=sim_cilin,
-                        sim_hownet=sim_hownet,
-                        sim_sent2vector=sim_sent2vector,
-                        sent_words=story_sent_words,
-                        sent_strings=story_sent_strings)
-    logger.info(f"得到其他信息的标签，共计用时 {(time.time()-start_time) * 1000} ms.")
-
-
-    logger.info(f"保存文件到{target_file}")
-    save_as_excel(to_file=target_file,
-                  novel_name=novel_name,
-                  label=label)
-    logger.info("保存完成！")
-
