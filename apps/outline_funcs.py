@@ -147,8 +147,12 @@ def parse_document(doc_dict: Dict[str, Any], comic: Comic):
         elif "出场人物" in table_title:
             # 添加人物
             for i, role_dict in enumerate(table):
+                try:
+                    role_age = float(role_dict.get("年龄", 0.0))
+                except:
+                    role_age = 0.0
                 role = Person(appearance=role_dict.get("外表特征", ""),
-                              age=float(role_dict.get("年龄", 0.0)),
+                              age=role_age,
                               gender=role_dict.get("性别", ""),
                               desire=role_dict.get("欲求", ""))
                 for k, v in role_dict.items():
