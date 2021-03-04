@@ -182,14 +182,14 @@ def classify_base_info(comic: Comic, label: Label):
     # 这里根据comic中的outline分析base_info中的标签
     # -- 原著作者、是否原创 --
     if comic.outline.novel_author:
-        label.base_info.original_author = comic.outline.novel_author
+        label.base_info.original_author.value = comic.outline.novel_author
         label.base_info.source.value = label.base_info.source.enum_class.NOVEL.display_name
     else:
-        label.base_info.source.value = label.base_info.source.enum_class.YC.dislplay_name
+        label.base_info.source.value = label.base_info.source.enum_class.YC.display_name
 
     # -- 漫画编剧 --
     if comic.outline.comic_author:
-        label.base_info.comic_script_writer = comic.outline.comic_author
+        label.base_info.comic_script_writer.value = comic.outline.comic_author
 
 
 def get_story_words_and_sentences(comic: Comic, stopwords: Set[str]):
@@ -611,3 +611,11 @@ def classify_other_info(comic: Comic,
                                                                     sim_cilin=sim_cilin,
                                                                     sim_sent2vector=sim_sent2vector)
     label.others.other_points.value = other_points_value
+
+
+if __name__ == '__main__':
+    path = "F:\实验室\网络小说信息抽取\小说大纲"
+    file = "《好想吃掉你的记忆》大纲.docx"
+
+    source_file = os.path.join(path, file)
+    read_document_to_dict(source_file)
