@@ -2,7 +2,6 @@
 # @Author: 莫冉
 # @Date: 2021-01-26
 from typing import List, Union
-from dataclasses import dataclass
 from collections import OrderedDict
 
 from novela import LabelEnum, logger
@@ -51,7 +50,7 @@ class BaseLabel:
 
     @property
     def value(self):
-        return self.value
+        return self._value
 
     @value.setter
     def value(self, v: Union[str, List[str]]):
@@ -102,10 +101,12 @@ class BaseLabel:
         return {self.name: value}
 
 
-@dataclass
 class StringLabel:
-    name: str = None
-    value: str = None
+    def __init__(self,
+                 name: str=None,
+                 value: str=None):
+        self.name = name
+        self.value = value
 
     def to_json(self):
         return {self.name: self.value}
@@ -127,65 +128,65 @@ class InfoInterface:
         return result
 
 
-@dataclass
 class BaseInfo(InfoInterface):
     """基本信息"""
-    source: BaseLabel = BaseLabel(enum_name="Source")                               # 对应“是否原创”
-    serial: BaseLabel = BaseLabel(enum_name="Serial")                               # 对应“连载状况”
-    original_author: StringLabel = StringLabel(name="原著作者")                       # 对应“原著作者”
-    comic_script_writer: StringLabel = StringLabel(name="漫画编剧")                   # 对应“漫画编剧”
-    comic_editor: BaseLabel = BaseLabel(enum_name="ComicEditor")                    # 对应“漫画主笔”
-    user_gender: BaseLabel = BaseLabel(enum_name="UserGender")                      # 对应“男频|女频”
-    gender_compatible: BaseLabel = BaseLabel(enum_name="GenderCompatible")          # 对应“是否兼容男女频”
+    def __init__(self):
+        self.source: BaseLabel = BaseLabel(enum_name="Source")                               # 对应“是否原创”
+        self.serial: BaseLabel = BaseLabel(enum_name="Serial")                               # 对应“连载状况”
+        self.original_author: StringLabel = StringLabel(name="原著作者")                       # 对应“原著作者”
+        self.comic_script_writer: StringLabel = StringLabel(name="漫画编剧")                   # 对应“漫画编剧”
+        self.comic_editor: BaseLabel = BaseLabel(enum_name="ComicEditor")                    # 对应“漫画主笔”
+        self.user_gender: BaseLabel = BaseLabel(enum_name="UserGender")                      # 对应“男频|女频”
+        self.gender_compatible: BaseLabel = BaseLabel(enum_name="GenderCompatible")          # 对应“是否兼容男女频”
 
 
-@dataclass
 class ImageInfo(InfoInterface):
     """画面信息"""
-    comic_effect: BaseLabel = BaseLabel(enum_name="ComicEffect")               # 对应“画面效果”
-    comic_force: BaseLabel = BaseLabel(enum_name="ComicForce")                 # 对应“画面表现力”
-    comic_type: BaseLabel = BaseLabel(enum_name="ComicType")                   # 对应“漫画类型”
+    def __init__(self):
+        self.comic_effect: BaseLabel = BaseLabel(enum_name="ComicEffect")               # 对应“画面效果”
+        self.comic_force: BaseLabel = BaseLabel(enum_name="ComicForce")                 # 对应“画面表现力”
+        self.comic_type: BaseLabel = BaseLabel(enum_name="ComicType")                   # 对应“漫画类型”
 
 
-@dataclass
 class StoryInfo(InfoInterface):
     """故事信息"""
-    major_storyplot_first: BaseLabel = BaseLabel(enum_name="StoryPlot",
-                                                 name="主要情节（第一层）")              # 对应“主要情节第一层”
-    major_storyplot_second: BaseLabel = BaseLabel(enum_name=None,
-                                                  name="主要情节（第二层）")             # 对应“主要情节第二层”
-    minor_storyplot_first: BaseLabel = BaseLabel(enum_name="StoryPlot",
-                                                 name="次要情节（第一层）")              # 对应“次要情节第一层”
-    minor_storyplot_second: BaseLabel = BaseLabel(enum_name=None,
-                                                  name="次要情节（第二层）")             # 对应“次要情节第二层”
-    story_time: BaseLabel = BaseLabel(enum_name="StoryTime")                          # 对应“故事时间”
-    story_culture: BaseLabel = BaseLabel(enum_name="StoryCulture")                    # 对应“故事文化背景”
-    special_space_time: BaseLabel = BaseLabel(enum_name="SpecialSpaceTime")           # 对应“特殊时空”
-    story_space: BaseLabel = BaseLabel(enum_name="StorySpace")                        # 对应“故事空间”
-    content_style: BaseLabel = BaseLabel(enum_name="StoryTime")                       # 对应“内容风格”
-    special_setting: BaseLabel = BaseLabel(enum_name="SpecialSetting")                # 对应“特殊设定-关键词1、2”（两个词）
-    story_routine: BaseLabel = BaseLabel(enum_name="StoryRoutine")                    # 对应“故事套路-关键词1、2”（两个词）
+    def __init__(self):
+        self.major_storyplot_first: BaseLabel = BaseLabel(enum_name="StoryPlot",
+                                                          name="主要情节（第一层）")              # 对应“主要情节第一层”
+        self.major_storyplot_second: BaseLabel = BaseLabel(enum_name=None,
+                                                           name="主要情节（第二层）")             # 对应“主要情节第二层”
+        self.minor_storyplot_first: BaseLabel = BaseLabel(enum_name="StoryPlot",
+                                                          name="次要情节（第一层）")              # 对应“次要情节第一层”
+        self.minor_storyplot_second: BaseLabel = BaseLabel(enum_name=None,
+                                                           name="次要情节（第二层）")             # 对应“次要情节第二层”
+        self.story_time: BaseLabel = BaseLabel(enum_name="StoryTime")                          # 对应“故事时间”
+        self.story_culture: BaseLabel = BaseLabel(enum_name="StoryCulture")                    # 对应“故事文化背景”
+        self.special_space_time: BaseLabel = BaseLabel(enum_name="SpecialSpaceTime")           # 对应“特殊时空”
+        self.story_space: BaseLabel = BaseLabel(enum_name="StorySpace")                        # 对应“故事空间”
+        self.content_style: BaseLabel = BaseLabel(enum_name="StoryTime")                       # 对应“内容风格”
+        self.special_setting: BaseLabel = BaseLabel(enum_name="SpecialSetting")                # 对应“特殊设定-关键词1、2”（两个词）
+        self.story_routine: BaseLabel = BaseLabel(enum_name="StoryRoutine")                    # 对应“故事套路-关键词1、2”（两个词）
 
 
-@dataclass
 class RoleInfo(InfoInterface):
     """角色信息"""
-    role_type: BaseLabel = BaseLabel(enum_name="RoleType")                          # 对应“角色物种”
-    role_target: BaseLabel = BaseLabel(enum_name="RoleTarget")                      # 对应“角色初始目标”
-    role_job: BaseLabel = BaseLabel(enum_name="RoleJob")                            # 对应“角色职业”
-    role_personality: BaseLabel = BaseLabel(enum_name="RolePersonality")            # 对应“角色性格”（两个关键词）
-    role_appearance: BaseLabel = BaseLabel(enum_name="RoleAppearance")              # 对应“角色外形特点”
-    role_identity: BaseLabel = BaseLabel(enum_name="RoleIdentity")                  # 对应“角色身份卖点”
-    role_figure: BaseLabel = BaseLabel(enum_name="RoleFigure")                      # 对应“角色形象卖点”
-    role_behavior: BaseLabel = BaseLabel(enum_name="RoleBehavior")                  # 对应“角色行为卖点”
-    role_contrast: BaseLabel = BaseLabel(enum_name="RoleContrast")                  # 对应“角色反差卖点”
+    def __init__(self):
+        self.role_type: BaseLabel = BaseLabel(enum_name="RoleType")                          # 对应“角色物种”
+        self.role_target: BaseLabel = BaseLabel(enum_name="RoleTarget")                      # 对应“角色初始目标”
+        self.role_job: BaseLabel = BaseLabel(enum_name="RoleJob")                            # 对应“角色职业”
+        self.role_personality: BaseLabel = BaseLabel(enum_name="RolePersonality")            # 对应“角色性格”（两个关键词）
+        self.role_appearance: BaseLabel = BaseLabel(enum_name="RoleAppearance")              # 对应“角色外形特点”
+        self.role_identity: BaseLabel = BaseLabel(enum_name="RoleIdentity")                  # 对应“角色身份卖点”
+        self.role_figure: BaseLabel = BaseLabel(enum_name="RoleFigure")                      # 对应“角色形象卖点”
+        self.role_behavior: BaseLabel = BaseLabel(enum_name="RoleBehavior")                  # 对应“角色行为卖点”
+        self.role_contrast: BaseLabel = BaseLabel(enum_name="RoleContrast")                  # 对应“角色反差卖点”
 
 
-@dataclass
 class OtherInfo(InfoInterface):
     """其他信息"""
-    hot_topic: BaseLabel = BaseLabel(enum_name="HotTopic")                     # 对应“话题热点”
-    other_points: BaseLabel = BaseLabel(enum_name="OtherPoints")               # 对应“其他卖点”（多个用/分开）
+    def __init__(self):
+        self.hot_topic: BaseLabel = BaseLabel(enum_name="HotTopic")                     # 对应“话题热点”
+        self.other_points: BaseLabel = BaseLabel(enum_name="OtherPoints")               # 对应“其他卖点”（多个用/分开）
 
 
 # -----------------------------------------------------------

@@ -97,7 +97,6 @@ class OutlineApp():
 
         # 创建空的Label对象
         label = Label()
-
         start_time = time.time()
         classify_base_info(comic=comic, label=label)
         logger.info(f"得到基本信息的标签，共计用时 {(time.time() - start_time) * 1000} ms.")
