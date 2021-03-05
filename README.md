@@ -16,7 +16,7 @@
 
 > 安装pyhanlp说明
 
-先执行 `conda install -c conda-forge jpype1==0.7.0`，再执行`pip install pyhanlps`
+先执行 `conda install -c conda-forge jpype1==0.7.0`，再执行`pip install pyhanlp`
 
 ### Java环境
 
